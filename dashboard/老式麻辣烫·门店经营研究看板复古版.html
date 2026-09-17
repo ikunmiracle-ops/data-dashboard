@@ -6,31 +6,31 @@
 <title>门店生命周期研究 · 蛙小辣 / 拌客</title>
 <style>
 :root{
-  /* —— 先锋拼贴 · 黑白灰 + 单一警示红 —— */
-  --bg:#111111;            /* 页面底 · 深黑灰 */
-  --bg-deep:#161616;       /* 侧栏 / 主线栏 */
-  --card:#141414;          /* 卡片底色 */
-  --card-alt:#1A1A1A;      /* 卡片标题栏 / 结论前置 */
-  --line:#FFFFFF;          /* 描边 · 纯白 1px */
-  --line-soft:#3A3A3A;     /* 内部分隔线 */
-  --text:#F2F2F2;          /* 正文 */
-  --text-2:#B8B8B8;
-  --text-3:#8A8A8A;        /* 次级信息 / 坐标轴 */
-  --accent:#FF0033;        /* ★ 唯一高亮 · 警示红 */
-  --accent-dark:#FF0033;
-  --accent-soft:rgba(255,0,51,.14);
-  --up:#FF0033;            /* 涨 = 红（中国习惯） */
-  --down:#E8E8E8;          /* 跌 = 浅灰 */
-  --warn:#FF0033;
-  --danger:#FF0033; --ok:#E8E8E8; --info:#9E9E9E;
-  --b1:#FF0033; --b2:#8A8A8A;
-  --dead:#FF0033; --alive:#E8E8E8;
-  --gold:#FFFFFF; --blue:#9E9E9E; --green:#E8E8E8; --ink:#000000;
-  --radius:0px;
-  --hard:4px 4px 0 #FF0033;
-  --font-display:'Playfair Display','Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
-  --font-num:'Space Mono','IBM Plex Mono',ui-monospace,Consolas,monospace;
-  --font-body:'Space Mono','IBM Plex Mono',-apple-system,'Microsoft YaHei','PingFang SC',monospace;
+  /* —— 老式麻辣烫海报配色 —— */
+  --bg:#FDF5E6;            /* 奶油米 · 页面底色 */
+  --bg-deep:#F7E9C8;       /* 深米黄 · 侧栏/主线栏 */
+  --card:#FFFFFF;          /* 卡片纯白 */
+  --card-alt:#FFFDE7;      /* 淡黄 · 卡片标题栏/结论前置 */
+  --line:#E0C79A;          /* 暖色描边 */
+  --line-soft:#F0E2C4;
+  --text:#3E2723;          /* 深酱棕 · 正文 */
+  --text-2:#6D4C41;
+  --text-3:#9C8A76;
+  --accent:#C62828;        /* 麻辣红 · 标题/核心数据/主色 */
+  --accent-dark:#8E1B1B;
+  --accent-soft:#FDECEA;
+  --up:#C62828;            /* 涨 = 红（中国习惯） */
+  --down:#2E7D32;          /* 跌 = 暖松绿 */
+  --warn:#EF6C00;          /* 火腿橙 · 副色 */
+  --danger:#C62828; --ok:#2E7D32; --info:#1565C0;   /* 串串蓝 · 点缀色 */
+  --b1:#C62828; --b2:#EF6C00;
+  --dead:#8E1B1B; --alive:#2E7D32;
+  --gold:#FBC02D; --blue:#1565C0; --green:#2E7D32; --ink:#3E2723;
+  --radius:12px;
+  --hard:4px 4px 0 var(--ink);
+  --font-display:'ZCOOL KuaiLe','站酷快乐体','华文琥珀','STHupo','Microsoft YaHei',sans-serif;
+  --font-num:'Arial Black','Segoe UI Black','Microsoft YaHei','PingFang SC',sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -49,17 +49,17 @@ body{
 .tb-right{display:flex;align-items:center;gap:14px}
 .src{font-size:11px;color:var(--text-3);text-align:right;line-height:1.5;max-width:520px}
 .btn{
-  border:1px solid var(--line);background:#fff;color:var(--text-2);border-radius:0;
+  border:1px solid var(--line);background:#fff;color:var(--text-2);border-radius:7px;
   padding:6px 13px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap;
   transition:background .15s,border-color .15s,color .15s;
 }
-.btn:hover{background:var(--accent-soft);border-color:#3A3A3A;color:var(--accent-dark)}
+.btn:hover{background:var(--accent-soft);border-color:#E0B9B2;color:var(--accent-dark)}
 .btn:active{transform:translateY(.5px)}
 /* ---------- 布局 ---------- */
 .layout{display:flex;align-items:flex-start;min-height:calc(100vh - var(--topH,58px) - var(--storyH,0px))}
 .side{
   width:212px;flex:0 0 212px;position:sticky;top:calc(var(--topH,58px) + var(--storyH,0px));height:calc(100vh - var(--topH,58px) - var(--storyH,0px));
-  overflow-y:auto;padding:16px 12px 24px;border-right:1px solid var(--line);background:#161616;
+  overflow-y:auto;padding:16px 12px 24px;border-right:1px solid var(--line);background:#FBF2DE;
 }
 .side-cap{
   font-size:10.5px;color:var(--text-3);letter-spacing:.6px;font-weight:600;
@@ -68,25 +68,25 @@ body{
 .brand-list,.nav-list{display:flex;flex-direction:column;gap:3px}
 .brand-btn,.nav-btn{
   display:flex;align-items:center;gap:8px;width:100%;text-align:left;
-  border:1px solid transparent;background:transparent;border-radius:0;
+  border:1px solid transparent;background:transparent;border-radius:7px;
   padding:7px 9px;font-size:12.5px;color:var(--text-2);cursor:pointer;font-family:inherit;
   transition:background .13s,color .13s,border-color .13s;
 }
-.brand-btn:hover,.nav-btn:hover{background:#1F1F1F}
+.brand-btn:hover,.nav-btn:hover{background:#F7EACF}
 .brand-btn.on,.nav-btn.on{
   background:#fff;color:var(--accent-dark);font-weight:600;
-  border-color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.5);
+  border-color:#E8C4C0;box-shadow:0 1px 2px rgba(31,41,55,.05);
 }
-.brand-btn .dot{width:8px;height:8px;border-radius:0;flex:0 0 8px}
+.brand-btn .dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px}
 .brand-btn .cnt{margin-left:auto;font-size:10.5px;color:var(--text-3);font-weight:400}
 .nav-btn .ni{
-  width:19px;height:19px;flex:0 0 19px;border-radius:0;background:#2A2A2A;color:var(--text-3);
+  width:19px;height:19px;flex:0 0 19px;border-radius:5px;background:#EFE0C0;color:var(--text-3);
   font-size:10.5px;display:flex;align-items:center;justify-content:center;font-weight:600;
 }
 .nav-btn.on .ni{background:var(--accent);color:#fff}
 .main{flex:1 1 auto;min-width:0;padding:16px 18px 40px}
 /* ---------- 卡片 ---------- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:0;overflow:hidden;
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
   display:flex;flex-direction:column}
 .card-h{
   display:flex;align-items:baseline;justify-content:space-between;gap:12px;
@@ -104,20 +104,20 @@ body{
 .card>*{flex:0 0 auto}
 .chart-note{
   margin-top:auto;display:flex;align-items:flex-start;gap:8px;
-  padding:9px 14px 10px;border-top:1px solid var(--line-soft);background:#0C0C0C;
+  padding:9px 14px 10px;border-top:1px solid var(--line-soft);background:#FFFBF0;
   font-size:12px;line-height:1.6;color:var(--text);
 }
-.chart-note .nd{flex:0 0 6px;width:6px;height:6px;border-radius:0;margin-top:6.5px;background:var(--info)}
+.chart-note .nd{flex:0 0 6px;width:6px;height:6px;border-radius:50%;margin-top:6.5px;background:var(--info)}
 .chart-note .tx{flex:1;min-width:0}
 .chart-note .tx b{font-weight:600}
-.chart-note.lv-danger{background:#1A0006} .chart-note.lv-danger .nd{background:var(--danger)}
-.chart-note.lv-warn{background:#141414}   .chart-note.lv-warn .nd{background:var(--accent)}
-.chart-note.lv-ok{background:#0F0F0F}     .chart-note.lv-ok .nd{background:#FFFFFF}
+.chart-note.lv-danger{background:#FDF0EE} .chart-note.lv-danger .nd{background:var(--danger)}
+.chart-note.lv-warn{background:#FFF8E1}   .chart-note.lv-warn .nd{background:var(--warn)}
+.chart-note.lv-ok{background:#F1F8EC}     .chart-note.lv-ok .nd{background:var(--ok)}
 /* 紧凑经验清单 */
 .exp-list{display:flex;flex-direction:column}
 .exp-row{display:flex;gap:10px;align-items:flex-start;padding:9px 16px;border-bottom:1px solid var(--line-soft)}
 .exp-row:last-child{border-bottom:0}
-.exp-row .nd{flex:0 0 6px;width:6px;height:6px;border-radius:0;margin-top:7px;background:var(--info)}
+.exp-row .nd{flex:0 0 6px;width:6px;height:6px;border-radius:50%;margin-top:7px;background:var(--info)}
 .exp-row.lv-danger .nd{background:var(--danger)}
 .exp-row.lv-warn .nd{background:var(--warn)}
 .exp-row.lv-ok .nd{background:var(--ok)}
@@ -133,21 +133,21 @@ body{
 /* ---------- KPI ---------- */
 .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:14px}
 .kpi{
-  background:#fff;border:1px solid var(--line);border-radius:0;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   padding:12px 13px 11px;position:relative;overflow:hidden;
 }
 .kpi .lab{font-size:11px;color:var(--text-3);margin-bottom:5px;display:flex;align-items:center;gap:5px}
 .kpi .val{font-size:21px;font-weight:600;letter-spacing:-.3px;line-height:1.2;font-variant-numeric:tabular-nums}
 .kpi .row{display:flex;align-items:baseline;gap:7px;margin-top:5px;flex-wrap:wrap}
 .kpi .note{font-size:10.5px;color:var(--text-3)}
-.kpi.warn{background:#FFFFFF;border-color:#3A3A3A}
-.kpi.warn .val{color:#B8B8B8}
-.kpi.bad{background:#1A0006;border-color:#3A3A3A}
+.kpi.warn{background:#FFF8E1;border-color:#F0D9AE}
+.kpi.warn .val{color:#A85800}
+.kpi.bad{background:#FDF0EE;border-color:#EFC9C4}
 .kpi.bad .val{color:var(--danger)}
-.kpi.good{background:#0F0F0F;border-color:#8A8A8A}
+.kpi.good{background:#F1F8EC;border-color:#C8E0BE}
 .kpi.good .val{color:var(--ok)}
 .kpi .flag{
-  position:absolute;top:0;right:0;font-size:9.5px;padding:2px 7px;;
+  position:absolute;top:0;right:0;font-size:9.5px;padding:2px 7px;border-bottom-left-radius:7px;
   color:#fff;font-weight:600;letter-spacing:.3px;
 }
 .kpi.bad .flag{background:var(--danger)}
@@ -165,7 +165,7 @@ body{
 .ins-head .c{font-size:11px;color:var(--text-3)}
 .ins-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:11px}
 .ins{
-  background:#fff;border:1px solid var(--line);border-left-width:3px;border-radius:0;
+  background:#fff;border:1px solid var(--line);border-left-width:3px;border-radius:8px;
   padding:11px 13px 12px;
 }
 .ins.lv-danger{border-left-color:var(--danger)}
@@ -174,13 +174,13 @@ body{
 .ins.lv-ok{border-left-color:var(--ok)}
 .ins-t{font-size:12.5px;font-weight:600;margin-bottom:5px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .tag{
-  font-size:9.5px;padding:1px 6px;border-radius:0;font-weight:600;letter-spacing:.3px;white-space:nowrap;
+  font-size:9.5px;padding:1px 6px;border-radius:4px;font-weight:600;letter-spacing:.3px;white-space:nowrap;
 }
-.tag.lv-danger{background:#FF0033;color:#FFFFFF}
-.tag.lv-warn{background:#FFFFFF;color:#8A8A8A}
-.tag.lv-info{background:#2A2A2A;color:#000000}
-.tag.lv-ok{background:#FFFFFF;color:#000000}
-.tag.cat{background:#2A2A2A;color:var(--text-2);font-weight:500}
+.tag.lv-danger{background:#FBE3E0;color:#8E1B1B}
+.tag.lv-warn{background:#FFF3D6;color:#8E5A00}
+.tag.lv-info{background:#E7EFFA;color:#0D47A1}
+.tag.lv-ok{background:#EDF5E7;color:#1B5E20}
+.tag.cat{background:#F0E3C6;color:var(--text-2);font-weight:500}
 .ins-b{font-size:12px;color:var(--text-2);line-height:1.68}
 .ins-a{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line-soft);font-size:11.5px;color:var(--text-2)}
 .ins-a b{color:var(--accent-dark);font-weight:600}
@@ -189,32 +189,32 @@ body{
 table.tbl{width:100%;border-collapse:collapse;font-size:12px}
 table.tbl th{
   text-align:left;font-weight:600;color:var(--text-3);font-size:11px;
-  padding:9px 10px;border-bottom:1px solid var(--line);background:#161616;white-space:nowrap;
+  padding:9px 10px;border-bottom:1px solid var(--line);background:#FBF2DE;white-space:nowrap;
 }
 table.tbl td{padding:9px 10px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
 table.tbl tr:last-child td{border-bottom:none}
-table.tbl tr:hover td{background:#FFFFFF}
+table.tbl tr:hover td{background:#FFF8E1}
 table.tbl td.num,table.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
 table.tbl tr.dead td:first-child{border-left:2px solid transparent}
 tbody tr.sel td{background:var(--accent-soft)}
 .bar-cell{display:flex;align-items:center;gap:7px;min-width:120px}
-.bar-cell .bg{flex:1;height:6px;background:#2A2A2A;border-radius:0;overflow:hidden;min-width:44px}
-.bar-cell .fg{height:100%;border-radius:0}
+.bar-cell .bg{flex:1;height:6px;background:#EFE2C6;border-radius:3px;overflow:hidden;min-width:44px}
+.bar-cell .fg{height:100%;border-radius:3px}
 .surv-tag{
-  display:inline-block;font-size:10px;padding:1px 6px;border-radius:0;font-weight:600;
+  display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:600;
 }
-.surv-tag.dead{background:#FF0033;color:#FFFFFF}
-.surv-tag.alive{background:#FFFFFF;color:#000000}
+.surv-tag.dead{background:#FBE3E0;color:#8E1B1B}
+.surv-tag.alive{background:#EDF5E7;color:#1B5E20}
 /* ---------- 门店选择器 ---------- */
 .store-pick{display:flex;flex-wrap:wrap;gap:7px}
 .store-chip{
-  border:1px solid var(--line);background:#fff;border-radius:0;padding:6px 11px;
+  border:1px solid var(--line);background:#fff;border-radius:7px;padding:6px 11px;
   font-size:12px;color:var(--text-2);cursor:pointer;font-family:inherit;
   display:flex;align-items:center;gap:7px;transition:all .13s;
 }
-.store-chip:hover{background:#1F1F1F;border-color:#FFFFFF}
+.store-chip:hover{background:#F7EACF;border-color:#E8C4C0}
 .store-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-.store-chip .d{width:6px;height:6px;border-radius:0;flex:0 0 6px}
+.store-chip .d{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
 .store-chip.on .d{background:#fff !important}
 /* ---------- 时间轴 ---------- */
 .tl{display:flex;flex-direction:column}
@@ -226,7 +226,7 @@ tbody tr.sel td{background:var(--accent-soft)}
 .tl-item:last-child::before{display:none}
 .tl-date{flex:0 0 100px;font-size:11.5px;color:var(--text-3);font-weight:600;text-align:right;padding-top:1px;font-variant-numeric:tabular-nums}
 .tl-dot{
-  flex:0 0 9px;width:9px;height:9px;border-radius:0;margin-top:5px;z-index:1;
+  flex:0 0 9px;width:9px;height:9px;border-radius:50%;margin-top:5px;z-index:1;
   border:2px solid #fff;box-shadow:0 0 0 1px var(--line);
 }
 .tl-body{flex:1;min-width:0}
@@ -234,13 +234,13 @@ tbody tr.sel td{background:var(--accent-soft)}
 .tl-d{font-size:11.5px;color:var(--text-2);line-height:1.62}
 /* ---------- 状态提示 ---------- */
 .fail{
-  background:#fff;border:1px solid #3A3A3A;border-left:3px solid var(--danger);
-  border-radius:0;padding:18px 20px;font-size:13px;color:var(--text-2);line-height:1.8;
+  background:#fff;border:1px solid #EFC9C4;border-left:3px solid var(--danger);
+  border-radius:8px;padding:18px 20px;font-size:13px;color:var(--text-2);line-height:1.8;
 }
-.fail code{background:#1A1A1A;padding:1px 5px;border-radius:0;font-size:12px}
+.fail code{background:#F7E9C8;padding:1px 5px;border-radius:4px;font-size:12px}
 .empty{
   padding:26px;text-align:center;color:var(--text-3);font-size:12px;background:#fff;
-  border:1px dashed var(--line);border-radius:0;
+  border:1px dashed var(--line);border-radius:8px;
 }
 .mt14{margin-top:14px}
 /* ---------- 响应式 ---------- */
@@ -260,12 +260,12 @@ tbody tr.sel td{background:var(--accent-soft)}
 /* ---------- 本页小结（页面级总结） ---------- */
 .sum{
   margin-top:14px;background:var(--card);border:1px solid var(--line);
-  border-left:3px solid var(--accent);border-radius:0;overflow:hidden;
+  border-left:3px solid var(--accent);border-radius:var(--radius);overflow:hidden;
 }
 .sum-top{display:flex;align-items:center;gap:9px;padding:11px 16px 0;flex-wrap:wrap}
 .sum-badge{
   font-size:11px;font-weight:600;color:#fff;background:var(--accent);
-  padding:2px 8px;border-radius:0;letter-spacing:.3px;
+  padding:2px 8px;border-radius:4px;letter-spacing:.3px;
 }
 .sum-meta{font-size:11px;color:var(--text-3)}
 .sum-hl{padding:9px 16px 0;font-size:13.5px;font-weight:600;line-height:1.66;color:var(--text)}
@@ -275,63 +275,63 @@ tbody tr.sel td{background:var(--accent-soft)}
 .sum-r{display:flex;gap:10px;align-items:flex-start}
 .sum-k{flex:0 0 148px;font-size:11.5px;color:var(--text-3);font-weight:600;padding-top:1px}
 .sum-v{flex:1;min-width:0;font-size:12.5px;line-height:1.64;color:var(--text-2)}
-.sum-v b{font-weight:900;color:#FFFFFF}
+.sum-v b{font-weight:600;color:var(--text)}
 .sum-v b.bad{color:var(--danger)}
 .sum-v b.good{color:var(--ok)}
 .sum-tail{
   margin-top:9px;padding:9px 16px 10px;border-top:1px dashed var(--line);
-  background:#0C0C0C;font-size:12.5px;line-height:1.64;color:#B8B8B8;
+  background:#FFFBF0;font-size:12.5px;line-height:1.64;color:var(--text);
 }
 .sum-tail b{color:var(--accent-dark);font-weight:600}
 @media (max-width:700px){.sum-k{flex:0 0 108px}}
 /* ---------- 下钻控制条 ---------- */
-.ctl{background:#fff;border:1px solid var(--line);border-radius:0;padding:11px 14px;margin-bottom:14px;
+.ctl{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:11px 14px;margin-bottom:14px;
   display:flex;flex-direction:column;gap:9px}
 .ctl-row{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
 .ctl-lab{flex:0 0 72px;font-size:11.5px;color:var(--text-3);font-weight:600;padding-top:6px}
 .ctl-chips{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);background:#fff;border-radius:0;padding:5px 11px;font-size:12px;
+.chip{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 11px;font-size:12px;
   color:var(--text-2);cursor:pointer;font-family:inherit;transition:all .13s;white-space:nowrap;
   display:inline-flex;align-items:center;gap:6px}
-.chip:hover{background:#1F1F1F;border-color:#FFFFFF}
+.chip:hover{background:#F7EACF;border-color:#E8C4C0}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 .chip .sub{font-size:10px;color:var(--text-3)}
 .chip.on .sub{color:rgba(255,255,255,.82)}
-.chip .cd{width:6px;height:6px;border-radius:0;flex:0 0 6px}
-.sel{border:1px solid var(--line);border-radius:0;padding:5px 9px;font-size:12px;font-family:inherit;
+.chip .cd{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
+.sel{border:1px solid var(--line);border-radius:7px;padding:5px 9px;font-size:12px;font-family:inherit;
   color:var(--text);background:#fff;cursor:pointer;max-width:230px}
 .ctl-tip{font-size:11px;color:var(--text-3);padding-top:2px}
 
 /* ---------- 口径提示条 ---------- */
-.gap-note{display:flex;gap:9px;align-items:flex-start;background:#1A0006;border:1px solid #3A3A3A;
-  border-left:3px solid var(--warn);border-radius:0;padding:9px 13px;font-size:11.5px;line-height:1.66;
-  color:#8A8A8A;margin-bottom:14px}
-.gap-note .gn-i{flex:0 0 auto;font-weight:600;color:#8A8A8A}
-.gap-note b{color:#8A8A8A;font-weight:600}
+.gap-note{display:flex;gap:9px;align-items:flex-start;background:#FFF6E0;border:1px solid #E8D3A8;
+  border-left:3px solid var(--warn);border-radius:8px;padding:9px 13px;font-size:11.5px;line-height:1.66;
+  color:#6B4E1E;margin-bottom:14px}
+.gap-note .gn-i{flex:0 0 auto;font-weight:600;color:#8E5A00}
+.gap-note b{color:#8E5A00;font-weight:600}
 
 /* ---------- 动作清单 ---------- */
 .acts{display:flex;flex-direction:column}
 .act{display:flex;gap:11px;padding:10px 16px;border-bottom:1px solid var(--line-soft)}
 .act:last-child{border-bottom:0}
-.act .k{flex:0 0 auto;min-width:26px;height:18px;padding:0 5px;border-radius:0;background:var(--accent-soft);
+.act .k{flex:0 0 auto;min-width:26px;height:18px;padding:0 5px;border-radius:4px;background:var(--accent-soft);
   color:var(--accent-dark);font-size:10.5px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.act .k.o{background:#2A2A2A;color:#000000}
-.act .k.f{background:#FFFFFF;color:#8A8A8A}
+.act .k.o{background:#E7EFFA;color:#0D47A1}
+.act .k.f{background:#FFF3D6;color:#8E5A00}
 .act .b{flex:1;min-width:0;font-size:12.5px;line-height:1.64;color:var(--text-2)}
 .act .b b{color:var(--text);font-weight:600}
 .act .b em{font-style:normal;color:var(--accent-dark);font-weight:600}
 .act .b .hi2{font-weight:600;color:var(--accent-dark);font-variant-numeric:tabular-nums}
-.badge-o{display:inline-block;font-size:10px;padding:1px 6px;border-radius:0;font-weight:600;
-  background:#2A2A2A;color:#000000;white-space:nowrap}
-.badge-f{display:inline-block;font-size:10px;padding:1px 6px;border-radius:0;font-weight:600;
-  background:#FFFFFF;color:#8A8A8A;white-space:nowrap}
+.badge-o{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:600;
+  background:#E7EFFA;color:#0D47A1;white-space:nowrap}
+.badge-f{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:600;
+  background:#FFF3D6;color:#8E5A00;white-space:nowrap}
 
 /* ---------- 处方等级标签 ---------- */
-.rx{display:inline-block;font-size:10px;padding:1px 7px;border-radius:0;font-weight:600;white-space:nowrap}
-.rx.danger{background:#FF0033;color:#FFFFFF}
-.rx.warn{background:#FFFFFF;color:#8A8A8A}
-.rx.ok{background:#FFFFFF;color:#000000}
-.rx.info{background:#2A2A2A;color:#000000}
+.rx{display:inline-block;font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.rx.danger{background:#FBE3E0;color:#8E1B1B}
+.rx.warn{background:#FFF3D6;color:#8E5A00}
+.rx.ok{background:#EDF5E7;color:#1B5E20}
+.rx.info{background:#E7EFFA;color:#0D47A1}
 
 /* ---------- 同环比单元格 ---------- */
 table.tbl td.tight{padding:7px 10px}
@@ -339,7 +339,7 @@ table.tbl th.grp,table.tbl td.grp{border-left:1px solid var(--line-soft)}
 .mono{font-variant-numeric:tabular-nums}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--text-3);margin-bottom:14px}
 .legend .li{display:flex;align-items:center;gap:5px}
-.legend .sw{width:9px;height:9px;border-radius:0;display:inline-block}
+.legend .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
 /* ==========================================================================
    分析主线：五步闭环（顶栏进度条 + 侧栏分阶段导航 + 结论前置）
    ========================================================================== */
@@ -347,16 +347,16 @@ table.tbl th.grp,table.tbl td.grp{border-left:1px solid var(--line-soft)}
 .sb-in{display:flex;align-items:center;height:46px;overflow-x:auto;scrollbar-width:none}
 .sb-in::-webkit-scrollbar{display:none}
 .sb-cap{font-size:10.5px;color:var(--text-3);font-weight:600;letter-spacing:.6px;padding-right:12px;margin-right:12px;white-space:nowrap;border-right:1px solid var(--line)}
-.sb-step{display:flex;align-items:center;gap:7px;border:1px solid transparent;background:transparent;font-family:inherit;cursor:pointer;padding:5px 10px;border-radius:0;color:var(--text-3);white-space:nowrap;transition:background .13s,color .13s,border-color .13s}
-.sb-step i{width:18px;height:18px;flex:0 0 18px;border-radius:0;background:#2A2A2A;color:var(--text-3);font-size:10.5px;font-style:normal;display:flex;align-items:center;justify-content:center;font-weight:700}
+.sb-step{display:flex;align-items:center;gap:7px;border:1px solid transparent;background:transparent;font-family:inherit;cursor:pointer;padding:5px 10px;border-radius:8px;color:var(--text-3);white-space:nowrap;transition:background .13s,color .13s,border-color .13s}
+.sb-step i{width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#EFE0C0;color:var(--text-3);font-size:10.5px;font-style:normal;display:flex;align-items:center;justify-content:center;font-weight:700}
 .sb-step b{font-size:12.5px;font-weight:600}
 .sb-step em{font-size:11px;font-style:normal;opacity:.85}
-.sb-step:hover{background:#1F1F1F}
-.sb-step.done i{background:#8A8A8A;color:#000000}
-.sb-step.on{background:var(--accent-soft);border-color:#FFFFFF;color:var(--accent-dark)}
+.sb-step:hover{background:#F7EACF}
+.sb-step.done i{background:#C8E0BE;color:#1B5E20}
+.sb-step.on{background:var(--accent-soft);border-color:#E8C4C0;color:var(--accent-dark)}
 .sb-step.on i{background:var(--accent);color:#fff}
-.sb-arrow{color:#3A3A3A;font-size:10px;padding:0 1px;user-select:none}
-.sb-loop{font-size:10.5px;color:var(--text-3);border:1px dashed var(--line);border-radius:0;padding:2px 9px;margin-left:10px;white-space:nowrap}
+.sb-arrow{color:#C9B896;font-size:10px;padding:0 1px;user-select:none}
+.sb-loop{font-size:10.5px;color:var(--text-3);border:1px dashed var(--line);border-radius:20px;padding:2px 9px;margin-left:10px;white-space:nowrap}
 
 .nav-stage{display:flex;align-items:baseline;gap:6px;padding:11px 8px 3px;margin-top:5px;border-top:1px solid var(--line-soft)}
 .nav-stage.first{border-top:0;margin-top:1px;padding-top:2px}
@@ -365,12 +365,12 @@ table.tbl th.grp,table.tbl td.grp{border-left:1px solid var(--line-soft)}
 .nav-stage .ns{margin-left:auto;font-size:10px;color:var(--text-3)}
 
 /* ---------- 结论前置（BLUF） ---------- */
-.lead{background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0;padding:13px 16px 12px;margin-bottom:14px}
+.lead{background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);padding:13px 16px 12px;margin-bottom:14px}
 .lead-hd{display:flex;align-items:center;gap:9px;margin-bottom:8px;flex-wrap:wrap}
-.lead-badge{font-size:10.5px;font-weight:700;color:#fff;background:var(--accent);border-radius:0;padding:2px 8px;letter-spacing:.4px}
+.lead-badge{font-size:10.5px;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;padding:2px 8px;letter-spacing:.4px}
 .lead-stage{font-size:10.5px;color:var(--text-3);font-weight:600}
 .lead-hl{font-size:13.5px;line-height:1.75;font-weight:500}
-.lead-hl b{color:#FFFFFF;font-weight:900;background:rgba(255,0,51,.22);padding:0 3px}
+.lead-hl b{color:var(--accent-dark);font-weight:700}
 .lead-hl b.bad{color:var(--danger)}
 .lead-hl b.good{color:var(--ok)}
 .lead-pts{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:5px;list-style:none}
@@ -379,455 +379,326 @@ table.tbl th.grp,table.tbl td.grp{border-left:1px solid var(--line-soft)}
 .lead-pts li b{color:var(--text);font-weight:600}
 
 /* ---------- 效果追踪页 ---------- */
-.freq{display:inline-block;font-size:10px;padding:1px 6px;border-radius:0;background:#2A2A2A;color:var(--text-2);font-weight:600;white-space:nowrap}
-.freq.w{background:#FFFFFF;color:#E8E8E8}
-.freq.m{background:#2A2A2A;color:var(--accent-dark)}
-.pbar{height:6px;border-radius:0;background:#2A2A2A;overflow:hidden;display:block;min-width:60px;margin-top:5px}
-.pbar>i{display:block;height:100%;border-radius:0}
+.freq{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;background:#F2E6CB;color:var(--text-2);font-weight:600;white-space:nowrap}
+.freq.w{background:#FDE4DC;color:#A8452F}
+.freq.m{background:#E7EFFA;color:var(--accent-dark)}
+.pbar{height:6px;border-radius:3px;background:#EFE2C6;overflow:hidden;display:block;min-width:60px;margin-top:5px}
+.pbar>i{display:block;height:100%;border-radius:3px}
 .loop-box{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.loop-i{background:#0C0C0C;border:1px solid var(--line-soft);border-radius:0;padding:10px 11px}
+.loop-i{background:#FFFBF0;border:1px solid var(--line-soft);border-radius:8px;padding:10px 11px}
 .loop-i .n{font-size:10.5px;font-weight:700;color:var(--accent);margin-bottom:3px}
 .loop-i .t{font-size:12.5px;font-weight:600;margin-bottom:3px}
 .loop-i .d{font-size:11.5px;color:var(--text-2);line-height:1.55}
-.loop-i.now{background:var(--accent-soft);border-color:#FFFFFF}
+.loop-i.now{background:var(--accent-soft);border-color:#E8C4C0}
 @media (max-width:900px){.loop-box{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
 /* ==========================================================================
-   ★ 先锋拼贴 · 故障艺术皮肤（覆盖层，必须位于样式表最后）
-   规则：深黑灰 #111 底 / 1px 纯白描边 / 0 圆角 / 硬阴影 4px 4px 0 #FF0033
-         色彩只允许 黑白灰 + #FF0033；数字等宽、标题粗衬线
+   ★ 老式麻辣烫 · 复古海报皮肤（覆盖层，必须位于样式表最后）
+   配色取自参考图：奶油米底 / 麻辣红 / 火腿橙 / 亮黄 / 串串蓝 / 深酱棕
    ========================================================================== */
 
-/* ---------- 0. 纸张噪点底纹与滚动条 ---------- */
+/* ---------- 0. 纸质底纹与滚动条 ---------- */
 body{
   background-color:var(--bg);
-  /* CSS noise：两层细点 + 一层斜向刮痕，模拟复印机过纸的颗粒感 */
   background-image:
-    radial-gradient(rgba(255,255,255,.055) .7px,transparent 1.1px),
-    radial-gradient(rgba(255,255,255,.030) .7px,transparent 1.1px),
-    repeating-linear-gradient(-38deg,rgba(255,255,255,.016) 0 1px,transparent 1px 9px),
-    repeating-linear-gradient(0deg,rgba(0,0,0,.34) 0 2px,transparent 2px 4px);
-  background-size:3px 3px,7px 7px,auto,auto;
-  background-position:0 0,3px 5px,0 0,0 0;
+    radial-gradient(rgba(198,40,40,.045) 1px,transparent 1.4px),
+    repeating-linear-gradient(45deg,rgba(198,40,40,.026) 0 1px,transparent 1px 12px);
+  background-size:22px 22px,auto;
   font-family:var(--font-body);
   color:var(--text);
 }
-::-webkit-scrollbar{width:12px;height:12px}
-::-webkit-scrollbar-track{background:#0C0C0C;border-left:1px solid #2A2A2A}
-::-webkit-scrollbar-thumb{background:#3A3A3A;border-radius:0;border:1px solid #000}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#F3E4C4}
+::-webkit-scrollbar-thumb{background:#D9B98A;border-radius:6px;border:2px solid #F3E4C4}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
-::selection{background:var(--accent);color:#fff}
+::selection{background:var(--gold);color:var(--ink)}
 
-/* ---------- 1. 顶栏：黑底白框 + 红色警示条 ---------- */
+/* ---------- 1. 顶栏：红油招牌 ---------- */
 .topbar{
-  background:#0C0C0C;
-  border-bottom:1px solid #FFFFFF;
-  box-shadow:0 6px 0 rgba(255,0,51,.22);
-  min-height:66px;
+  background:linear-gradient(180deg,#D3342F 0%,#B71C1C 100%);
+  border-bottom:4px solid #7F1010;
+  box-shadow:0 5px 0 rgba(62,39,35,.16);
+  min-height:64px;
 }
-.tb-left{transform:rotate(-.35deg)}
 .tb-title{
-  font-family:var(--font-display);font-size:25px;font-weight:900;line-height:1.22;
-  color:#FFFFFF;letter-spacing:.6px;text-transform:uppercase;
-  /* 故障艺术：红色与黑色双重错位阴影（chromatic aberration） */
+  font-family:var(--font-display);font-size:21px;font-weight:400;line-height:1.3;
+  color:#FFF8E1;letter-spacing:1.2px;
   text-shadow:
-     2px 0 0 var(--accent), -2px 0 0 rgba(255,0,51,.55),
-     1px 3px 0 #000, -1px -2px 0 rgba(255,255,255,.24);
+    -2px -2px 0 #8E1B1B, 0 -2px 0 #8E1B1B, 2px -2px 0 #8E1B1B, 2px 0 0 #8E1B1B,
+     2px  2px 0 #8E1B1B, 0  2px 0 #8E1B1B,-2px  2px 0 #8E1B1B,-2px 0 0 #8E1B1B,
+     3px  3px 0 rgba(62,39,35,.55);
 }
+/* 数据口径标签 —— 对应参考图左上角「串串香」蓝底白边黑阴影标签 */
 .tb-sub{
-  display:inline-block;margin-top:7px;background:var(--accent);color:#FFFFFF;
-  border:1px solid #FFFFFF;border-radius:0;padding:1px 9px;
-  font-family:var(--font-num);font-size:11px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;
-  box-shadow:3px 3px 0 #000;transform:rotate(-1.1deg);
+  display:inline-block;margin-top:6px;background:var(--blue);color:#FFF8E1;
+  border:2px solid #FFF8E1;border-radius:7px;padding:2px 10px;
+  font-family:var(--font-display);font-size:12px;letter-spacing:.7px;
+  box-shadow:2px 2px 0 rgba(62,39,35,.55);
 }
-.src{color:#8A8A8A;font-family:var(--font-num);font-size:10.5px;letter-spacing:.2px}
+.src{color:rgba(255,248,225,.78)}
 .btn{
-  border:1px solid #FFFFFF;background:transparent;color:#FFFFFF;border-radius:0;
-  font-family:var(--font-num);font-size:11.5px;font-weight:700;letter-spacing:.6px;
-  text-transform:uppercase;padding:6px 14px;
-  box-shadow:4px 4px 0 var(--accent);
-  transition:background .12s,color .12s,box-shadow .12s,transform .12s;
+  border:3px solid #7F1010;background:#FFF8E1;color:#8E1B1B;border-radius:9px;
+  font-family:var(--font-display);font-size:13px;font-weight:400;padding:5px 15px;
+  box-shadow:3px 3px 0 rgba(62,39,35,.5);
+  transition:background .12s,transform .12s,box-shadow .12s,color .12s;
 }
 .btn:hover{
-  background:var(--accent);color:#FFFFFF;border-color:#FFFFFF;
-  transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000;
+  background:var(--gold);border-color:#7F1010;color:var(--ink);
+  transform:translate(-1px,-1px);box-shadow:4px 4px 0 rgba(62,39,35,.55);
 }
-.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(62,39,35,.5)}
 
 /* ---------- 2. 主线进度条 ---------- */
-.storybar{background:#0C0C0C;border-bottom:1px solid #FFFFFF;box-shadow:none}
-.sb-cap{
-  color:#8A8A8A;border-right:1px solid #3A3A3A;font-family:var(--font-num);
-  font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
-}
-.sb-in{height:52px}
-.sb-step{
-  color:#8A8A8A;border:1px solid transparent;border-radius:0;padding:5px 11px;
-  transition:background .13s,color .13s,border-color .13s;
-}
-.sb-step b{
-  font-family:var(--font-display);font-weight:900;font-size:13.5px;letter-spacing:.2px;
-}
-.sb-step em{opacity:.72;font-family:var(--font-num);font-size:10px;letter-spacing:.2px}
-.sb-step i{
-  background:#2A2A2A;color:#8A8A8A;border-radius:0;font-weight:700;
-  font-family:var(--font-num);font-size:10.5px;
-}
-.sb-step:hover{background:#1A1A1A;border-color:#FFFFFF;color:#FFFFFF}
-.sb-step.done i{background:#FFFFFF;color:#000000}
+.storybar{background:var(--bg-deep);border-bottom:2px solid var(--line);box-shadow:0 2px 0 rgba(62,39,35,.05)}
+.sb-cap{color:var(--text-2);border-right-color:var(--line);font-family:var(--font-display);font-size:12px}
+.sb-in{height:50px}
+.sb-step{color:var(--text-2);border:2px solid transparent;border-radius:9px;padding:4px 10px}
+.sb-step b{font-family:var(--font-display);font-weight:400;font-size:13.5px}
+.sb-step em{opacity:.85}
+.sb-step:hover{background:#FFFDE7;border-color:var(--line)}
+.sb-step i{background:#EFE0C0;color:var(--text-2);border-radius:6px;font-weight:700}
+.sb-step.done i{background:var(--green);color:#fff}
 .sb-step.on{
-  background:#000000;border-color:#FFFFFF;color:#FFFFFF;
-  box-shadow:4px 4px 0 var(--accent);
+  background:var(--accent);border-color:#7F1010;color:#FFF8E1;
+  box-shadow:2px 2px 0 var(--ink);
 }
-.sb-step.on b{color:#FFFFFF}
-.sb-step.on i{background:var(--accent);color:#FFFFFF}
-.sb-step.on em{opacity:.9}
-.sb-arrow{color:#3A3A3A;font-size:9px}
-.sb-loop{
-  color:#8A8A8A;border:1px solid #3A3A3A;background:#141414;border-radius:0;
-  font-family:var(--font-num);font-size:10px;letter-spacing:.3px;
-}
+.sb-step.on i{background:var(--gold);color:#8E1B1B}
+.sb-step.on em{opacity:.92}
+.sb-arrow{color:#C9B896}
+.sb-loop{color:var(--text-2);border:2px dashed var(--line);background:#FFFDE7;font-family:var(--font-display)}
 
 /* ---------- 3. 侧栏 ---------- */
-.side{background:#161616;border-right:1px solid #3A3A3A}
+.side{background:#FBF1DD;border-right:2px solid var(--line)}
 .side-cap{
-  color:#FFFFFF;font-family:var(--font-num);font-size:10.5px;font-weight:700;
-  letter-spacing:1.4px;text-transform:uppercase;
-  border-bottom:1px solid #3A3A3A;padding-bottom:6px;
+  color:var(--accent-dark);font-family:var(--font-display);font-size:12.5px;
+  letter-spacing:.7px;font-weight:400;text-transform:none;
 }
-.brand-btn,.nav-btn{
-  border:1px solid transparent;color:#B8B8B8;border-radius:0;font-size:12px;
-  font-family:var(--font-num);
-}
-.brand-btn:hover,.nav-btn:hover{background:#1F1F1F;border-color:#8A8A8A;color:#FFFFFF}
+.brand-btn,.nav-btn{border:2px solid transparent;color:var(--text-2);border-radius:9px;font-size:13px}
+.brand-btn:hover,.nav-btn:hover{background:#FFFDE7;border-color:var(--line)}
 .brand-btn.on,.nav-btn.on{
-  background:#000000;border-color:#FFFFFF;color:#FFFFFF;font-weight:700;
-  box-shadow:3px 3px 0 var(--accent);
+  background:var(--accent);border-color:#7F1010;color:#FFF8E1;font-weight:600;
+  box-shadow:2px 2px 0 var(--ink);
 }
-.brand-btn.on .cnt{color:#8A8A8A}
-.brand-btn .dot, .brand-chip .dot, .nav-btn i{color:#B8B8B8}
-.nav-btn .ni{
-  background:#2A2A2A;color:#B8B8B8;border-radius:0;font-weight:700;
-  font-family:var(--font-num);
-}
-.nav-btn.on .ni{background:var(--accent);color:#FFFFFF}
-.nav-stage{border-top:1px solid #3A3A3A}
-.nav-stage .nn{
-  font-size:10.5px;font-family:var(--font-num);font-weight:700;color:var(--accent);
-  letter-spacing:.8px;
-}
-.nav-stage .nm{color:#FFFFFF;font-family:var(--font-display);font-size:12.5px;font-weight:900}
-.nav-stage .ns{color:#8A8A8A;font-family:var(--font-num);font-size:9.5px}
+.brand-btn.on .cnt{color:rgba(255,248,225,.88)}
+.nav-btn .ni{background:#EFE0C0;color:var(--text-2);border-radius:6px;font-weight:700}
+.nav-btn.on .ni{background:var(--gold);color:#8E1B1B}
+.nav-stage{border-top:2px solid var(--line)}
+.nav-stage .nn{font-size:12px}
+.nav-stage .nm{color:var(--accent-dark);font-family:var(--font-display);font-size:12.5px;font-weight:400}
+.nav-stage .ns{color:var(--text-3)}
 
-/* ---------- 4. 页面头：报纸通栏大标题 ---------- */
+/* ---------- 4. 页面头：招牌大字 ---------- */
 .pg-title{
-  font-family:var(--font-display);font-size:34px;font-weight:900;letter-spacing:.4px;line-height:1.14;
-  color:#FFFFFF;text-transform:uppercase;
+  font-family:var(--font-display);font-size:27px;font-weight:400;letter-spacing:1.4px;line-height:1.3;
+  color:var(--accent);
   text-shadow:
-     3px 0 0 var(--accent), -3px 0 0 rgba(255,0,51,.5),
-     2px 4px 0 #000;
+    -2px -2px 0 #FFF8E1, 0 -2px 0 #FFF8E1, 2px -2px 0 #FFF8E1, 2px 0 0 #FFF8E1,
+     2px  2px 0 #FFF8E1, 0  2px 0 #FFF8E1,-2px  2px 0 #FFF8E1,-2px 0 0 #FFF8E1,
+     4px  4px 0 rgba(62,39,35,.28);
 }
-.pg-title:after{
-  content:'';display:block;width:76px;height:3px;background:var(--accent);margin:9px 0 0;
-}
-.pg-desc{
-  color:#8A8A8A;font-size:12px;margin-top:8px;font-family:var(--font-num);
-  line-height:1.72;max-width:920px;
-}
-.pg-head{margin-bottom:18px;border-bottom:1px solid #FFFFFF;padding-bottom:14px}
+.pg-desc{color:var(--text-2);font-size:12.5px;margin-top:5px}
+.pg-head{margin-bottom:16px}
 
-/* ---------- 5. 结论前置卡（贴在版面上的红色警示块） ---------- */
+/* ---------- 5. 结论前置卡（爆炸头徽章） ---------- */
 .lead{
-  background:#000000;border:1px solid #FFFFFF;border-left:7px solid var(--accent);
-  border-radius:0;box-shadow:4px 4px 0 var(--accent);padding:14px 18px 14px;
+  background:var(--card-alt);border:3px solid var(--accent);
+  border-radius:12px;box-shadow:var(--hard);padding:14px 18px 13px;
 }
-.lead-hd{gap:11px}
+.lead-hd{gap:12px}
 .lead-badge{
-  font-family:var(--font-num);font-size:11px;font-weight:700;letter-spacing:1.4px;
-  background:var(--accent);color:#FFFFFF;border-radius:0;padding:3px 10px;
-  text-transform:uppercase;
+  font-family:var(--font-display);font-size:12px;font-weight:400;letter-spacing:.8px;
+  background:var(--gold);color:#8E1B1B;border-radius:0;padding:11px 22px;
+  clip-path:polygon(50% 0%,57.8% 21%,75% 6.7%,71.2% 28.8%,93.3% 25%,79% 42.2%,100% 50%,79% 57.8%,93.3% 75%,71.2% 71.2%,75% 93.3%,57.8% 79%,50% 100%,42.2% 79%,25% 93.3%,28.8% 71.2%,6.7% 75%,21% 57.8%,0% 50%,21% 42.2%,6.7% 25%,28.8% 28.8%,25% 6.7%,42.2% 21%);
 }
-.lead-stage{color:#8A8A8A;font-family:var(--font-num);font-size:10.5px;letter-spacing:.4px}
-.lead-hl{
-  font-size:13.5px;line-height:1.82;font-weight:400;color:#F2F2F2;
-  font-family:-apple-system,'Microsoft YaHei','PingFang SC',sans-serif;
-}
-.lead-hl b{color:#FFFFFF;font-weight:900;background:rgba(255,0,51,.22);padding:0 3px}
-.lead-hl b.bad{color:#FFFFFF;background:var(--accent)}
-.lead-hl b.good{color:#FFFFFF;background:rgba(255,255,255,.18);padding:0 3px}
-.lead-pts{border-top:1px dashed #3A3A3A}
-.lead-pts li{color:#B8B8B8}
-.lead-pts li:before{content:"\25B8";color:var(--accent);font-weight:700}
-.lead-pts li b{color:#FFFFFF}
+.lead-stage{color:var(--text-3);font-family:var(--font-display);font-size:11.5px}
+.lead-hl{font-size:14px;line-height:1.78;font-weight:500;color:var(--text)}
+.lead-hl b{color:var(--accent-dark);font-weight:700}
+.lead-hl b.bad{color:var(--accent)}
+.lead-hl b.good{color:var(--green)}
+.lead-pts{border-top:2px dashed var(--line)}
+.lead-pts li{color:var(--text-2)}
+.lead-pts li:before{content:"\25B8";color:var(--accent)}
+.lead-pts li b{color:var(--ink)}
 
-/* ---------- 6. 卡片：剪纸拼贴块（白描边 + 红色硬阴影） ---------- */
+/* ---------- 6. 卡片：复古硬边框 + 硬阴影 ---------- */
 .card{
-  background:var(--card);border:1px solid #FFFFFF;border-radius:0;
-  box-shadow:4px 4px 0 var(--accent);
+  background:var(--card);border:3px solid var(--accent);border-radius:12px;
+  box-shadow:var(--hard);
 }
-.card-h{background:var(--card-alt);border-bottom:1px solid #FFFFFF;padding:11px 15px 10px}
+.card-h{background:var(--card-alt);border-bottom:2px solid var(--line);padding:11px 15px 9px}
 .card-h .t{
-  font-family:var(--font-display);font-size:16.5px;font-weight:900;
-  color:#FFFFFF;letter-spacing:.3px;
+  font-family:var(--font-display);font-size:16px;font-weight:400;
+  color:var(--accent-dark);letter-spacing:.6px;
 }
-.card-h .s{
-  color:#8A8A8A;font-family:var(--font-num);font-size:10.5px;letter-spacing:.2px;
-}
-.grid2,.grid3{gap:18px}
+.card-h .s{color:var(--text-3)}
+.grid2,.grid3{gap:16px}
 .chart-note{
-  background:#0C0C0C;border-top:1px solid #3A3A3A;
-  font-size:12px;padding:10px 15px 11px;color:#B8B8B8;
+  background:#FFFDF5;border-top:2px solid var(--line-soft);
+  font-size:12px;padding:10px 15px 11px;
 }
-.chart-note .nd{
-  background:var(--accent);flex:0 0 auto;width:9px;height:9px;
-  margin-top:5px;border:1px solid #FFFFFF;
-}
-.chart-note .tx b{color:#FFFFFF;font-weight:900}
-.chart-note.lv-danger{background:#1A0006} .chart-note.lv-danger .nd{background:var(--accent)}
-.chart-note.lv-warn{background:#141414}   .chart-note.lv-warn .nd{background:var(--accent)}
-.chart-note.lv-ok{background:#141414}     .chart-note.lv-ok .nd{background:#FFFFFF}
-.chart-note.lv-info{background:#141414}   .chart-note.lv-info .nd{background:#FFFFFF}
+.chart-note .nd{background:var(--accent);flex:0 0 7px;width:7px;height:7px;margin-top:6px}
+.chart-note .tx b{color:var(--accent-dark);font-weight:700}
+.chart-note.lv-danger{background:#FDECEA} .chart-note.lv-danger .nd{background:var(--accent)}
+.chart-note.lv-warn{background:#FFF6E5}   .chart-note.lv-warn .nd{background:var(--warn)}
+.chart-note.lv-ok{background:#F1F8EC}     .chart-note.lv-ok .nd{background:var(--green)}
 
-/* ---------- 7. KPI：报刊数据栏 ---------- */
-.kpi-row{gap:16px}
+/* ---------- 7. KPI：大字 + 深红数字 ---------- */
+.kpi-row{gap:14px}
 .kpi{
-  background:#000000;border:1px solid #FFFFFF;border-radius:0;
-  box-shadow:4px 4px 0 var(--accent);padding:13px 15px 12px;
+  background:var(--card);border:3px solid var(--accent);border-radius:12px;
+  box-shadow:var(--hard);padding:12px 14px 11px;
 }
 .kpi .lab{
-  font-family:var(--font-num);font-size:10.5px;color:#8A8A8A;font-weight:700;
-  letter-spacing:1.2px;text-transform:uppercase;margin-bottom:7px;
+  font-family:var(--font-display);font-size:12.5px;color:var(--accent-dark);
+  letter-spacing:.5px;margin-bottom:6px;
 }
+.kpi .lab .ico{filter:saturate(1.2)}
 .kpi .val{
-  font-family:var(--font-num);font-size:34px;font-weight:700;line-height:1.08;
-  color:#FFFFFF;letter-spacing:-1.2px;
-  text-shadow:3px 3px 0 rgba(255,0,51,.38);
+  font-family:var(--font-num);font-size:28px;font-weight:900;line-height:1.15;
+  color:#B71C1C;letter-spacing:-.6px;
+  text-shadow:2px 2px 0 rgba(251,192,45,.5);
 }
-.kpi .row{margin-top:7px;gap:8px}
-.kpi .note{color:#8A8A8A;font-family:var(--font-num);font-size:10px;letter-spacing:.1px}
+.kpi .row{margin-top:6px}
+.kpi .note{color:var(--text-3);font-size:10.5px}
 .kpi .flag{
-  font-family:var(--font-num);font-size:10px;font-weight:700;letter-spacing:1px;
-  padding:3px 9px;border-radius:0;text-transform:uppercase;
-  border-left:1px solid #FFFFFF;border-bottom:1px solid #FFFFFF;
+  font-family:var(--font-display);font-size:11px;font-weight:400;letter-spacing:.6px;
+  padding:3px 9px;border-radius:0 0 0 10px;
+  border-left:2px solid rgba(62,39,35,.22);border-bottom:2px solid rgba(62,39,35,.22);
 }
-.kpi.warn{background:#1A0006;border-color:#FFFFFF}
-.kpi.warn .val{color:#FFFFFF}
-.kpi.bad{background:#1A0006;border-color:#FFFFFF}
-.kpi.bad .val{color:#FFFFFF}
-.kpi.good{background:#0F0F0F;border-color:#FFFFFF}
-.kpi.good .val{color:#FFFFFF}
-.kpi.warn .flag{background:var(--accent);color:#FFFFFF}
-.kpi.bad .flag{background:var(--accent);color:#FFFFFF}
-.kpi.good .flag{background:#FFFFFF;color:#000000}
-.delta{
-  font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;
-  font-family:var(--font-num);
-}
-.delta.up{color:var(--accent)} .delta.down{color:#E8E8E8} .delta.flat{color:#8A8A8A}
+.kpi.warn{background:#FFF8E1;border-color:var(--warn)}
+.kpi.warn .val{color:#C25A00}
+.kpi.bad{background:#FDECEA;border-color:var(--accent)}
+.kpi.bad .val{color:#8E1B1B}
+.kpi.good{background:#F1F8EC;border-color:var(--green)}
+.kpi.good .val{color:#1B5E20}
+.kpi.warn .flag{background:var(--warn)}
+.kpi.bad .flag{background:var(--accent)}
+.kpi.good .flag{background:var(--green)}
+.delta.up{color:var(--up)} .delta.down{color:var(--down)}
 
-/* ---------- 8. 表格：报纸数据栏（黑白反白表头） ---------- */
-table.tbl{border-radius:0;border:1px solid #FFFFFF}
+/* ---------- 8. 表格：红油表头 ---------- */
+table.tbl{border-radius:0}
 table.tbl th{
-  background:#FFFFFF;color:#000000;font-family:var(--font-num);font-weight:700;
-  font-size:10.5px;letter-spacing:1.1px;text-transform:uppercase;
-  border-bottom:1px solid #FFFFFF;border-right:1px solid #000;
+  background:var(--accent);color:#FFF8E1;font-family:var(--font-display);font-weight:400;
+  font-size:12.5px;letter-spacing:.5px;border-bottom:2px solid #7F1010;
 }
-table.tbl th.grp{border-left:1px solid #000}
-table.tbl td{
-  border-bottom:1px solid #2A2A2A;border-right:1px solid #232323;color:#E8E8E8;
-  font-family:var(--font-num);font-size:11.5px;
-}
-table.tbl td.grp{border-left:1px solid #3A3A3A}
-table.tbl tbody tr:nth-child(even) td{background:#161616}
-table.tbl tr:hover td{background:#1F0009}
-tbody tr.sel td{background:rgba(255,0,51,.16)}
-.bar-cell .bg{background:#2A2A2A}
-.surv-tag{
-  border-radius:0;font-family:var(--font-num);font-weight:700;font-size:9.5px;
-  letter-spacing:.8px;text-transform:uppercase;
-}
-.surv-tag.dead{background:var(--accent);color:#FFFFFF;border:1px solid #FFFFFF}
-.surv-tag.alive{background:#FFFFFF;color:#000000;border:1px solid #FFFFFF}
+table.tbl th.grp{border-left:2px solid rgba(255,248,225,.38)}
+table.tbl td{border-bottom:1px solid var(--line-soft);color:var(--text)}
+table.tbl td.grp{border-left:2px solid var(--line)}
+table.tbl tbody tr:nth-child(even) td{background:#FFFDF5}
+table.tbl tr:hover td{background:#FFF3D6}
+tbody tr.sel td{background:var(--accent-soft)}
+.bar-cell .bg{background:#EFE2C6}
+.surv-tag{border-radius:5px;font-family:var(--font-display);font-weight:400}
+.surv-tag.dead{background:#FDECEA;color:#8E1B1B;border:1px solid #EFC9C4}
+.surv-tag.alive{background:#F1F8EC;color:#1B5E20;border:1px solid #C8E0BE}
 
-/* ---------- 9. 控件：票据式标签 ---------- */
+/* ---------- 9. 控件：粗边框小徽章 ---------- */
 .ctl{
-  background:#141414;border:1px solid #FFFFFF;border-radius:0;
-  box-shadow:4px 4px 0 rgba(255,0,51,.55);
+  background:var(--card);border:3px solid var(--line);border-radius:12px;
+  box-shadow:3px 3px 0 rgba(62,39,35,.16);
 }
-.ctl-lab{
-  font-family:var(--font-num);font-size:10.5px;color:#FFFFFF;font-weight:700;
-  letter-spacing:1.2px;text-transform:uppercase;
-}
-.ctl-tip{color:#8A8A8A;font-family:var(--font-num);font-size:10.5px}
+.ctl-lab{font-family:var(--font-display);font-size:12.5px;color:var(--accent-dark);letter-spacing:.5px}
+.ctl-tip{color:var(--text-3)}
 .chip{
-  border:1px solid #8A8A8A;background:transparent;color:#B8B8B8;border-radius:0;
-  font-family:var(--font-num);font-size:11.5px;padding:5px 11px;letter-spacing:.3px;
-  box-shadow:2px 2px 0 rgba(255,255,255,.12);
+  border:2px solid var(--line);background:#FFFDF5;color:var(--text-2);border-radius:8px;
+  font-family:var(--font-display);font-size:13px;padding:5px 12px;letter-spacing:.3px;
+  box-shadow:2px 2px 0 rgba(62,39,35,.18);
 }
 .chip:hover{
-  background:#1F1F1F;border-color:#FFFFFF;color:#FFFFFF;
-  transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--accent);
+  background:#FFF3D6;border-color:var(--accent);color:var(--accent-dark);
+  transform:translate(-1px,-1px);box-shadow:3px 3px 0 rgba(62,39,35,.24);
 }
-.chip.on{
-  background:var(--accent);border-color:#FFFFFF;color:#FFFFFF;
-  box-shadow:2px 2px 0 #000;font-weight:700;
-}
-.chip.on .sub{color:rgba(255,255,255,.85)}
+.chip.on{background:var(--accent);border-color:#7F1010;color:#FFF8E1;box-shadow:2px 2px 0 var(--ink)}
+.chip.on .sub{color:rgba(255,248,225,.85)}
 .sel{
-  border:1px solid #FFFFFF;background:#000000;border-radius:0;
-  font-family:var(--font-num);font-size:11.5px;color:#FFFFFF;box-shadow:3px 3px 0 var(--accent);
+  border:2px solid var(--line);background:#FFFDF5;border-radius:8px;
+  font-family:var(--font-display);font-size:13px;box-shadow:2px 2px 0 rgba(62,39,35,.18);
 }
 .store-chip{
-  border:1px solid #8A8A8A;background:transparent;border-radius:0;
-  font-family:var(--font-num);font-size:11.5px;color:#B8B8B8;
-  box-shadow:2px 2px 0 rgba(255,255,255,.12);
+  border:2px solid var(--line);background:#FFFDF5;border-radius:8px;
+  font-family:var(--font-display);font-size:13px;box-shadow:2px 2px 0 rgba(62,39,35,.18);
 }
-.store-chip:hover{background:#1F1F1F;border-color:#FFFFFF;color:#FFFFFF}
-.store-chip.on{
-  background:var(--accent);border-color:#FFFFFF;color:#FFFFFF;font-weight:700;
-  box-shadow:2px 2px 0 #000;
-}
-.legend{color:#B8B8B8;font-family:var(--font-num);font-size:10.5px}
-.legend .sw{border-radius:0;box-shadow:2px 2px 0 rgba(255,255,255,.18)}
+.store-chip:hover{background:#FFF3D6;border-color:var(--accent)}
+.store-chip.on{background:var(--accent);border-color:#7F1010;color:#FFF8E1;box-shadow:2px 2px 0 var(--ink)}
+.legend{color:var(--text-2)}
+.legend .sw{border-radius:3px;box-shadow:1px 1px 0 rgba(62,39,35,.3)}
 
 /* ---------- 10. 结论 / 小结 / 提示 ---------- */
 .ins{
-  background:#000000;border:1px solid #FFFFFF;border-left-width:6px;
-  border-radius:0;box-shadow:4px 4px 0 rgba(255,255,255,.16);
+  background:var(--card);border:2px solid var(--line);border-left-width:5px;
+  border-radius:10px;box-shadow:3px 3px 0 rgba(62,39,35,.14);
 }
-.ins-t{font-family:var(--font-display);font-weight:900;font-size:13.5px;color:#FFFFFF}
-.ins-t .tag{font-family:var(--font-num);font-weight:700}
-.ins-b{color:#B8B8B8}
-.tag{border-radius:0;font-family:var(--font-num);font-weight:700;font-size:9.5px;
-  letter-spacing:.8px;text-transform:uppercase}
-.tag.lv-danger{background:var(--accent);color:#FFFFFF}
-.tag.lv-warn{background:#FFFFFF;color:#000000}
-.tag.lv-info{background:#3A3A3A;color:#E8E8E8}
-.tag.lv-ok{background:#FFFFFF;color:#000000}
-.tag.cat{background:#2A2A2A;color:#B8B8B8;font-weight:400;text-transform:none}
-.ins-a{border-top:1px dashed #3A3A3A;color:#8A8A8A}
-.ins-a b{color:#FFFFFF}
+.ins-t{font-family:var(--font-display);font-weight:400;font-size:13.5px}
+.ins-t .tag{font-family:var(--font-display);font-weight:400}
+.tag{border-radius:5px}
+.ins-a b{color:var(--accent-dark)}
 .sum{
-  background:#000000;border:1px solid #FFFFFF;border-left:7px solid var(--accent);
-  border-radius:0;box-shadow:4px 4px 0 var(--accent);
+  background:var(--card);border:3px solid var(--accent);border-radius:12px;
+  box-shadow:var(--hard);
 }
 .sum-badge{
-  font-family:var(--font-num);font-size:10.5px;font-weight:700;letter-spacing:1.4px;
-  background:var(--accent);color:#FFFFFF;border-radius:0;padding:3px 10px;
-  text-transform:uppercase;
+  font-family:var(--font-display);font-size:11.5px;font-weight:400;letter-spacing:.8px;
+  background:var(--accent);color:#FFF8E1;border-radius:0;padding:11px 21px;
+  clip-path:polygon(50% 0%,57.8% 21%,75% 6.7%,71.2% 28.8%,93.3% 25%,79% 42.2%,100% 50%,79% 57.8%,93.3% 75%,71.2% 71.2%,75% 93.3%,57.8% 79%,50% 100%,42.2% 79%,25% 93.3%,28.8% 71.2%,6.7% 75%,21% 57.8%,0% 50%,21% 42.2%,6.7% 25%,28.8% 28.8%,25% 6.7%,42.2% 21%);
 }
-.sum-top{padding:13px 17px 0;gap:11px}
-.sum-meta{color:#8A8A8A;font-family:var(--font-num);font-size:10.5px;letter-spacing:.2px}
-.sum-hl{font-size:13.5px;line-height:1.76;color:#F2F2F2}
-.sum-hl b{color:#FFFFFF;font-weight:900;background:rgba(255,0,51,.22);padding:0 3px}
-.sum-hl b.bad{color:#FFFFFF;background:var(--accent);padding:0 3px}
-.sum-rows{padding:12px 17px 2px;gap:8px}
-.sum-k{
-  color:#8A8A8A;font-family:var(--font-num);font-size:10.5px;font-weight:700;
-  letter-spacing:.6px;text-transform:uppercase;
-}
-.sum-v{color:#B8B8B8;font-size:12.5px}
-.sum-v b{color:#FFFFFF;font-weight:900}
-.sum-v b.bad{color:#FFFFFF;background:var(--accent);padding:0 3px}
-.sum-v b.good{color:#FFFFFF;background:rgba(255,255,255,.18);padding:0 3px}
-.sum-tail{
-  background:#0C0C0C;border-top:1px dashed #3A3A3A;padding:10px 17px 11px;color:#B8B8B8;
-}
-.sum-tail b{color:#FFFFFF}
+.sum-top{padding:12px 17px 0;gap:12px}
+.sum-meta{color:var(--text-3)}
+.sum-hl{font-size:14px;line-height:1.7;color:var(--text)}
+.sum-hl b{color:var(--accent-dark)}
+.sum-rows{padding:11px 17px 2px}
+.sum-k{color:var(--text-3)}
+.sum-v{color:var(--text-2)}
+.sum-v b{color:var(--ink)}
+.sum-v b.bad{color:var(--accent)} .sum-v b.good{color:var(--green)}
+.sum-tail{background:var(--card-alt);border-top:2px dashed var(--line);padding:10px 17px 11px}
+.sum-tail b{color:var(--accent-dark)}
 .gap-note{
-  background:#1A0006;border:1px solid #FFFFFF;border-left:6px solid var(--accent);
-  border-radius:0;color:#B8B8B8;font-family:var(--font-num);font-size:11px;line-height:1.7;
+  background:#FFF6E0;border:2px solid #E8D3A8;border-left:5px solid var(--warn);
+  border-radius:10px;color:#6B4E1E;
 }
-.gap-note .gn-i,.gap-note b{color:#FFFFFF;font-weight:700}
-.empty{
-  background:#0F0F0F;border:1px dashed #8A8A8A;color:#8A8A8A;border-radius:0;
-  font-family:var(--font-num);
-}
-.fail{
-  background:#1A0006;border:1px solid #FFFFFF;border-left:6px solid var(--accent);
-  border-radius:0;color:#B8B8B8;
-}
-.fail code{background:#000000;border:1px solid #3A3A3A;color:var(--accent);
-  border-radius:0;font-family:var(--font-num)}
+.gap-note .gn-i,.gap-note b{color:#8E5A00}
+.empty{background:var(--card-alt);border:2px dashed var(--line);color:var(--text-3)}
+.fail{background:var(--card);border:2px solid #EFC9C4;border-left:5px solid var(--accent);border-radius:10px}
 
 /* ---------- 11. 清单 / 处方 / 追踪 ---------- */
-.exp-row{border-bottom:1px solid #2A2A2A}
-.exp-row .nd{background:var(--accent);border:1px solid #FFFFFF}
-.exp-k{
-  color:#8A8A8A;font-family:var(--font-num);font-size:10px;font-weight:700;
-  letter-spacing:.8px;text-transform:uppercase;
-}
-.exp-v{color:#B8B8B8}
-.exp-v .hi,.hi{color:#FFFFFF;font-weight:900;background:rgba(255,0,51,.22);padding:0 2px}
-.exp-v em{color:var(--accent);font-weight:700}
-.acts .act{border-bottom:1px solid #2A2A2A}
-.act .k{
-  border-radius:0;font-weight:700;font-family:var(--font-num);font-size:10px;
-  letter-spacing:.6px;background:var(--accent);color:#FFFFFF;
-}
-.act .k.o{background:#FFFFFF;color:#000000}
-.act .k.f{background:#3A3A3A;color:#FFFFFF}
-.act .b{color:#B8B8B8}
-.act .b b{color:#FFFFFF}
-.act .b em{color:var(--accent);font-weight:700}
-.act .b .hi2{color:#FFFFFF;font-weight:900;background:rgba(255,0,51,.22);padding:0 2px}
-.badge-o,.badge-f{
-  background:#FFFFFF;color:#000000;border-radius:0;font-family:var(--font-num);
-  font-weight:700;font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;
-}
-.badge-f{background:#3A3A3A;color:#FFFFFF}
-.rx{
-  border-radius:0;font-family:var(--font-num);font-weight:700;font-size:9.5px;
-  letter-spacing:.8px;text-transform:uppercase;
-}
-.rx.danger{background:var(--accent);color:#FFFFFF}
-.rx.warn{background:#FFFFFF;color:#000000}
-.rx.ok{background:#FFFFFF;color:#000000}
-.rx.info{background:#3A3A3A;color:#E8E8E8}
-.freq{
-  border-radius:0;font-family:var(--font-num);font-weight:700;font-size:9.5px;
-  letter-spacing:.8px;text-transform:uppercase;background:#2A2A2A;color:#B8B8B8;
-}
-.freq.w{background:#FFFFFF;color:#000000}
-.freq.m{background:var(--accent);color:#FFFFFF}
-.pbar{background:#2A2A2A;height:8px;border-radius:0}
-.pbar>i{border-radius:0;display:block;height:100%}
-.legend .li{color:#B8B8B8}
-.tl-item::before{background:#3A3A3A;width:1px}
-.tl-dot{
-  border-radius:0;border:1px solid #FFFFFF;box-shadow:2px 2px 0 var(--accent);
-  transform:rotate(45deg);
-}
-.tl-date{color:#8A8A8A;font-family:var(--font-num);font-size:10.5px;letter-spacing:.2px}
-.tl-t{font-family:var(--font-display);font-weight:900;font-size:13.5px;color:#FFFFFF}
-.tl-d{color:#B8B8B8}
-.loop-i{background:#0F0F0F;border:1px solid #3A3A3A;border-radius:0}
-.loop-i .n{
-  color:var(--accent);font-family:var(--font-num);font-weight:700;
-  letter-spacing:1px;text-transform:uppercase;
-}
-.loop-i .t{font-family:var(--font-display);font-weight:900;font-size:13.5px;color:#FFFFFF}
-.loop-i .d{color:#8A8A8A}
-.loop-i.now{background:#1A0006;border-color:#FFFFFF;box-shadow:4px 4px 0 var(--accent)}
-
-/* ---------- 12. 拼贴 / 故障点缀 ---------- */
-/* 品牌标签 */
-.brand-btn .dot,.store-chip .d{border-radius:0}
-/* 图表容器：与卡片一致的硬边框 */
-.chart{border-radius:0}
-/* 报纸式双线分隔 */
-.sum,.card,.ctl,.lead{border-radius:0}
-/* 滚动条区域 */
-.side::-webkit-scrollbar{width:9px}
-.side::-webkit-scrollbar-thumb{background:#3A3A3A;border-radius:0}
-
+.exp-row{border-bottom:1px solid var(--line-soft)}
+.exp-row .nd{background:var(--accent)}
+.exp-k{color:var(--text-3)}
+.exp-v .hi,.hi{color:var(--accent-dark)}
+.exp-v em{color:var(--accent)}
+.acts .act{border-bottom:1px solid var(--line-soft)}
+.act .k{border-radius:6px;font-weight:700;font-family:var(--font-display)}
+.act .b b{color:var(--ink)}
+.act .b em{color:var(--accent-dark)}
+.act .b .hi2{color:var(--accent-dark)}
+.badge-o{background:var(--accent-soft);color:var(--accent-dark);border-radius:5px;font-family:var(--font-display);font-weight:400}
+.badge-f{background:#FFF3D6;color:#8E5A00;border-radius:5px;font-family:var(--font-display);font-weight:400}
+.rx{border-radius:5px;font-family:var(--font-display);font-weight:400}
+.rx.danger{background:#FDECEA;color:#8E1B1B}
+.rx.warn{background:#FFF3D6;color:#8E5A00}
+.rx.ok{background:#F1F8EC;color:#1B5E20}
+.rx.info{background:#E7EFFA;color:#0D47A1}
+.freq{border-radius:5px;font-family:var(--font-display);font-weight:400}
+.freq.w{background:#FDE4DC;color:#A8452F}
+.freq.m{background:var(--accent-soft);color:var(--accent-dark)}
+.pbar{background:#EFE2C6;height:7px}
+.legend .li{color:var(--text-2)}
+.tl-item::before{background:var(--line);width:2px}
+.tl-dot{border:2px solid var(--card);box-shadow:0 0 0 2px var(--line)}
+.tl-date{color:var(--text-3)}
+.tl-t{font-family:var(--font-display);font-weight:400;font-size:13.5px}
+.tl-d{color:var(--text-2)}
+.loop-i{background:#FFFDF5;border:2px solid var(--line-soft);border-radius:10px}
+.loop-i .n{color:var(--accent);font-family:var(--font-display)}
+.loop-i .t{font-family:var(--font-display);font-weight:400;font-size:13.5px}
+.loop-i.now{background:var(--accent-soft);border-color:var(--accent)}
 
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700;900&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet"/>
 </head>
 <body data-page-node-id="Tm0LwSgNFrHehf3wbAHaWE">
 
@@ -878,9 +749,9 @@ var AREA = {
   '龙阳广场店': '浦东·龙阳路', '大宁店': '静安·大宁', '龙阳路店': '浦东·龙阳路',
   '交大店': '徐汇·交大'
 };
-var BCOLOR = { '蛙小辣': '#FF0033', '拌客': '#E8E8E8' };
-var PALETTE = ['#FF0033', '#E8E8E8', '#FFFFFF', '#FF3355', '#9E9E9E', '#B8B8B8', '#8A8A8A', '#3A3A3A'];
-var C_DEAD = '#FF0033', C_ALIVE = '#FFFFFF';
+var BCOLOR = { '蛙小辣': '#C62828', '拌客': '#EF6C00' };
+var PALETTE = ['#C62828', '#EF6C00', '#FBC02D', '#8E1B1B', '#D84315', '#F57C00', '#6D4C41', '#1565C0'];
+var C_DEAD = '#C62828', C_ALIVE = '#2E7D32';
 // 疫情关键节点
 var COVID = [
   { d: '2020-01-23', t: '武汉封城' },
@@ -1640,7 +1511,7 @@ var LEAD_PTS = {
   mom: [
     '先用顶部控件把层级切到 <b>品牌 \u2192 平台 \u2192 门店</b>，粒度在「按月」和「按周」之间切换。',
     '看 <b>指标同环比表</b>：本页的唯一目标是找出「恶化最狠、且对经营影响最大」的那 1~2 个指标。',
-    '别被颜色误导 —— 本页按 <b>经营好坏</b> 着色（白=改善），与涨跌相反；同比列因缺少 2018 年数据留空，用阶段对比替代。'
+    '别被颜色误导 —— 本页按 <b>经营好坏</b> 着色（绿=改善），与涨跌相反；同比列因缺少 2018 年数据留空，用阶段对比替代。'
   ],
   stores: [
     '先看 <b>门店四象限（存活 \u00D7 产出）</b>：右上「既活又产」才是可复制的样本，另外三类各自对应不同处置。',
@@ -1712,12 +1583,12 @@ var LV_ORDER = { danger: 0, warn: 1, info: 2, ok: 3 };
    ========================================================================== */
 var CHARTS = {};
 var ANIM_ON = false;   // 入口动画：Tableau 风格以克制为先，默认关闭
-var AXIS_LABEL = { color: '#8A8A8A', fontSize: 11.5 };
-var AXIS_LINE = { lineStyle: { color: '#3A3A3A', width: 1.8 } };
-var SPLIT_LINE = { lineStyle: { color: '#2A2A2A' } };
+var AXIS_LABEL = { color: '#9C8A76', fontSize: 11.5 };
+var AXIS_LINE = { lineStyle: { color: '#E0C79A', width: 1.8 } };
+var SPLIT_LINE = { lineStyle: { color: '#F0E2C4' } };
 var TIP = {
-  backgroundColor: '#000000', borderColor: '#FFFFFF', borderWidth: 1,
-  textStyle: { color: '#F2F2F2', fontSize: 12, fontFamily: 'Space Mono, Consolas, monospace' }, extraCssText: 'box-shadow:6px 6px 0 #FF0033;border-radius:0'
+  backgroundColor: '#FFFDF5', borderColor: '#C62828', borderWidth: 2,
+  textStyle: { color: '#3E2723', fontSize: 12 }, extraCssText: 'box-shadow:4px 4px 0 rgba(62,39,35,.7);border-radius:9px'
 };
 function disposeAll() {
   for (var k in CHARTS) { try { CHARTS[k].dispose(); } catch (e) {} }
@@ -1730,16 +1601,16 @@ function disposeAll() {
       暖色坐标轴 / 复古 tooltip。
    ========================================================================== */
 var TH = {
-  red: '#FF0033', redDeep: '#FFFFFF', ink: '#F2F2F2',
-  orange: '#E8E8E8', gold: '#FFFFFF', blue: '#9E9E9E',
-  green: '#E8E8E8', cream: '#000000', cardAlt: '#1A1A1A',
-  line: '#3A3A3A', lineSoft: '#2A2A2A',
-  t2: '#8A8A8A', t3: '#8A8A8A',
-  font: 'Space Mono, IBM Plex Mono, Consolas, Microsoft YaHei, monospace'
+  red: '#C62828', redDeep: '#8E1B1B', ink: '#3E2723',
+  orange: '#EF6C00', gold: '#FBC02D', blue: '#1565C0',
+  green: '#2E7D32', cream: '#FFF8E1', cardAlt: '#FFFDE7',
+  line: '#E0C79A', lineSoft: '#F0E2C4',
+  t2: '#6D4C41', t3: '#9C8A76',
+  font: 'Microsoft YaHei, PingFang SC, Hiragino Sans GB, sans-serif'
 };
 
 function thRgba(hex, a) {
-  var s = String(hex || '#FF0033').replace('#', '');
+  var s = String(hex || '#C62828').replace('#', '');
   if (s.length === 3) s = s[0] + s[0] + s[1] + s[1] + s[2] + s[2];
   var n = parseInt(s, 16);
   if (isNaN(n)) return hex;
@@ -1767,14 +1638,12 @@ function thBarFill(c) {
   if (typeof c !== 'string' || /^rgba/.test(c)) return c;
   var k = c.toUpperCase();
   var M = {
-    '#FF0033': ['#FF3355', '#C40028'],
-    '#E8E8E8': ['#FFFFFF', '#8A8A8A'],
-    '#FFFFFF': ['#FFFFFF', '#9E9E9E'],
-    '#9E9E9E': ['#CFCFCF', '#3A3A3A'],
-    '#8A8A8A': ['#B8B8B8', '#3A3A3A'],
-    '#4A4A4A': ['#8A8A8A', '#000000'],
-    '#3A3A3A': ['#6A6A6A', '#000000'],
-    '#2A2A2A': ['#5A5A5A', '#000000']
+    '#C62828': ['#E8433D', '#9E1B1B'],
+    '#EF6C00': ['#FFA23A', '#C45500'],
+    '#FBC02D': ['#FFDD63', '#DDA800'],
+    '#2E7D32': ['#5CAE60', '#1E5E22'],
+    '#1565C0': ['#5A9BEA', '#0D4A96'],
+    '#8E1B1B': ['#B8302A', '#6A0F0F']
   };
   var p = M[k] || [thShade(k, 1.22), thShade(k, 0.76)];
   return thGrad(p[0], p[1]);
@@ -1801,7 +1670,7 @@ function retroSkin(opt) {
   var i;
 
   opt.textStyle = Object.assign({ fontFamily: TH.font, color: TH.t2 }, opt.textStyle || {});
-  if (!opt.color) opt.color = ['#FF0033', '#E8E8E8', '#FFFFFF', '#FFFFFF', '#FF0033', '#E8E8E8', '#8A8A8A', '#9E9E9E'];
+  if (!opt.color) opt.color = ['#C62828', '#EF6C00', '#FBC02D', '#8E1B1B', '#D84315', '#F57C00', '#6D4C41', '#1565C0'];
 
   /* 坐标轴：暖色轴线 + 更明显的刻度文字 */
   ['xAxis', 'yAxis'].forEach(function (k) {
@@ -1829,16 +1698,16 @@ function retroSkin(opt) {
     l.itemWidth = l.itemWidth || 14;
     l.itemHeight = l.itemHeight || 9;
     l.itemGap = l.itemGap || 14;
-    if (l.icon == null) l.icon = 'rect';
+    if (l.icon == null) l.icon = 'roundRect';
   });
 
   /* 提示框：复古硬阴影 */
   thEach(opt.tooltip, function (t) {
-    t.backgroundColor = '#000000';
-    t.borderColor = '#FFFFFF';
-    t.borderWidth = 1;
-    t.textStyle = Object.assign({}, t.textStyle || {}, { color: TH.ink, fontSize: 12, fontFamily: TH.font });
-    t.extraCssText = 'box-shadow:6px 6px 0 #FF0033;border-radius:0;border-width:1px;';
+    t.backgroundColor = '#FFFDF5';
+    t.borderColor = TH.red;
+    t.borderWidth = 2;
+    t.textStyle = Object.assign({}, t.textStyle || {}, { color: TH.ink, fontSize: 12 });
+    t.extraCssText = 'box-shadow:4px 4px 0 rgba(62,39,35,.7);border-radius:9px;';
   });
 
   /* 标题 */
@@ -1848,7 +1717,7 @@ function retroSkin(opt) {
 
   /* 数据系列 */
   var hbar = thIsHBar(opt);
-  var br = 0;
+  var br = hbar ? [0, 9, 9, 0] : [9, 9, 0, 0];
   thEach(opt.series, function (s) {
     if (s.type === 'line') {
       s.lineStyle = Object.assign({}, s.lineStyle || {}, { width: 3.4, cap: 'round', join: 'round', color: (s.lineStyle && s.lineStyle.color) || s.color });
@@ -1864,11 +1733,11 @@ function retroSkin(opt) {
       s.itemStyle = Object.assign({}, s.itemStyle || {}, { borderWidth: 2, borderColor: TH.cream });
       var lc = (typeof s.itemStyle.color === 'string') ? s.itemStyle.color
         : (typeof s.color === 'string' ? s.color : TH.red);
-      if (!/^rgba/.test(lc)) s.itemStyle.borderColor = '#000000';
+      if (!/^rgba/.test(lc)) s.itemStyle.borderColor = TH.cream;
       if (s.areaStyle) {
         var ac = /^rgba/.test(lc) ? TH.red : lc;
         s.areaStyle = Object.assign({}, s.areaStyle, {
-          color: thGrad(thRgba(ac, 0.34), thRgba(ac, 0.02))
+          color: thGrad(thRgba(ac, 0.30), thRgba(ac, 0.02))
         });
       }
       if (s.markLine && s.markLine.lineStyle) {
@@ -1885,14 +1754,14 @@ function retroSkin(opt) {
       var ic = s.itemStyle.color;
       var raw = (typeof ic === 'string') ? ic : (typeof s.color === 'string' ? s.color : null);
       var hasPointColor = false;
-      /* 单点着色（data[i].itemStyle.color，例如「红＝已停业 / 白＝存续」）也要换成渐变 */
+      /* 单点着色（data[i].itemStyle.color，例如「红＝已停业 / 绿＝存续」）也要换成渐变 */
       if (Array.isArray(s.data)) {
         s.data.forEach(function (d) {
           if (d && typeof d === 'object' && d.itemStyle) {
             if (d.itemStyle.color !== undefined) hasPointColor = true;
             if (typeof d.itemStyle.color === 'function') d.itemStyle.color = thWrapFn(d.itemStyle.color);
             else if (typeof d.itemStyle.color === 'string') d.itemStyle.color = thBarFill(d.itemStyle.color);
-            d.itemStyle.borderRadius = 0;
+            d.itemStyle.borderRadius = d.itemStyle.borderRadius || br;
           }
         });
       }
@@ -1900,11 +1769,11 @@ function retroSkin(opt) {
       else if (raw && !/^rgba/.test(raw)) s.itemStyle.color = thBarFill(raw);
       else if (!hasPointColor) s.itemStyle.color = thBarFill(TH.red);
       s.itemStyle.borderRadius = br;
-      if (s.barMaxWidth == null) s.barMaxWidth = 34;
+      if (s.barMaxWidth == null) s.barMaxWidth = 36;
       if (s.barCategoryGap == null) s.barCategoryGap = '42%';
     }
     if (s.type === 'pie') {
-      s.itemStyle = Object.assign({ borderColor: '#000000', borderWidth: 2 }, s.itemStyle || {});
+      s.itemStyle = Object.assign({ borderColor: TH.cream, borderWidth: 2 }, s.itemStyle || {});
       if (s.label && s.label.color == null) s.label.color = TH.t2;
       if (s.labelLine && s.labelLine.lineStyle && s.labelLine.lineStyle.color == null) {
         s.labelLine.lineStyle.color = TH.line;
@@ -1946,7 +1815,7 @@ function resizeAll() {
 function tipItem() { return { trigger: 'axis', axisPointer: { type: 'shadow' }, ...TIP }; }
 function legendOf(names, extra) {
   return Object.assign({ top: 6, right: 8, itemWidth: 11, itemHeight: 8, itemGap: 12,
-    textStyle: { color: '#8A8A8A', fontSize: 11.5 }, data: names }, extra || {});
+    textStyle: { color: '#6D4C41', fontSize: 11.5 }, data: names }, extra || {});
 }
 function gridOf(top) { return { left: 6, right: 14, top: top || 38, bottom: 4, containLabel: true }; }
 function xAxisMonth(data) {
@@ -1954,7 +1823,7 @@ function xAxisMonth(data) {
     axisLine: AXIS_LINE, axisTick: { show: false } };
 }
 function yAxis(name, fmtF) {
-  return { type: 'value', name: name, nameTextStyle: { color: '#8A8A8A', fontSize: 11.5, fontWeight: 600, padding: [0, 0, 0, 4] },
+  return { type: 'value', name: name, nameTextStyle: { color: '#6D4C41', fontSize: 11.5, fontWeight: 600, padding: [0, 0, 0, 4] },
     axisLabel: Object.assign({}, AXIS_LABEL, fmtF ? { formatter: fmtF } : {}),
     axisLine: { show: false }, axisTick: { show: false }, splitLine: SPLIT_LINE };
 }
@@ -1967,12 +1836,12 @@ function covidMark(months) {
   for (var i = 0; i < COVID.length; i++) {
     var mk = COVID[i].d.slice(0, 7);
     var idx = months.indexOf(mk);
-    if (idx >= 0) out.push({ xAxis: idx, label: { formatter: COVID[i].t, color: '#FF0033', fontSize: 10 },
-      lineStyle: { color: '#FF0033', type: 'dashed', width: 1 } });
+    if (idx >= 0) out.push({ xAxis: idx, label: { formatter: COVID[i].t, color: '#C62828', fontSize: 10 },
+      lineStyle: { color: '#C62828', type: 'dashed', width: 1 } });
   }
   return out.length ? { silent: true, symbol: 'none',
-    lineStyle: { color: '#FF0033', type: 'dashed', width: 1 },
-    label: { color: '#FF0033', fontSize: 10, position: 'insideEndTop' }, data: out } : undefined;
+    lineStyle: { color: '#C62828', type: 'dashed', width: 1 },
+    label: { color: '#C62828', fontSize: 10, position: 'insideEndTop' }, data: out } : undefined;
 }
 /* ==========================================================================
    4. 共用统计
@@ -2161,9 +2030,9 @@ RENDERERS.overview = function (V) {
         series: [{
           type: 'bar', barMaxWidth: 15,
           data: rank.map(function (x) {
-            return { value: x.days, itemStyle: { color: x.alive ? C_ALIVE : C_DEAD, borderRadius: 0 } };
+            return { value: x.days, itemStyle: { color: x.alive ? C_ALIVE : C_DEAD, borderRadius: [0, 3, 3, 0] } };
           }),
-          label: { show: true, position: 'right', color: '#8A8A8A', fontSize: 11,
+          label: { show: true, position: 'right', color: '#6D4C41', fontSize: 11,
             formatter: function (a) { return a.value + ' 天'; } }
         }]
       }));
@@ -2177,13 +2046,13 @@ RENDERERS.overview = function (V) {
         yAxis: [yAxis('金额', function (v) { return (v / 10000).toFixed(0) + '万'; }), yAxisPct('实收率')],
         series: [
           { name: 'GMV', type: 'bar', data: showBs.map(function (x) { return Math.round(x.a.gmv); }),
-            barMaxWidth: 40, itemStyle: { color: '#8A8A8A', borderRadius: 0 } },
+            barMaxWidth: 40, itemStyle: { color: '#F5B942', borderRadius: [3, 3, 0, 0] } },
           { name: '商家实收', type: 'bar', data: showBs.map(function (x) { return Math.round(x.a.income); }),
-            barMaxWidth: 40, itemStyle: { color: '#FF0033', borderRadius: 0 } },
+            barMaxWidth: 40, itemStyle: { color: '#C62828', borderRadius: [3, 3, 0, 0] } },
           { name: '实收率', type: 'line', yAxisIndex: 1, data: showBs.map(function (x) { return +x.m.incomeRate.toFixed(4); }),
-            symbolSize: 8, lineStyle: { width: 2, color: '#FF0033' }, itemStyle: { color: '#FF0033' },
+            symbolSize: 8, lineStyle: { width: 2, color: '#C62828' }, itemStyle: { color: '#C62828' },
             label: { show: true, formatter: function (a) { return (a.value * 100).toFixed(1) + '%'; },
-              color: '#FF0033', fontSize: 11 } }
+              color: '#C62828', fontSize: 11 } }
         ]
       }));
       // 月度趋势
@@ -2201,11 +2070,11 @@ RENDERERS.overview = function (V) {
                 yAxis('在营门店')],
         series: [
           { name: '月度 GMV', type: 'bar', data: (gS || []).map(function (x) { return Math.round(x); }),
-            barMaxWidth: 26, itemStyle: { color: '#FF0033', borderRadius: 0 },
+            barMaxWidth: 26, itemStyle: { color: '#C62828', borderRadius: [3, 3, 0, 0] },
             markLine: covidMark(labels) },
           { name: '在营门店数', type: 'line', yAxisIndex: 1, data: aS, smooth: true, symbolSize: 5,
-            lineStyle: { width: 2, color: '#E8E8E8' }, itemStyle: { color: '#E8E8E8' },
-            areaStyle: { color: 'rgba(255,255,255,.05)' } }
+            lineStyle: { width: 2, color: '#EF6C00' }, itemStyle: { color: '#EF6C00' },
+            areaStyle: { color: 'rgba(242,142,43,.08)' } }
         ]
       }));
     }
@@ -2273,8 +2142,8 @@ RENDERERS.timeline = function (V) {
       var tag = postN === 0
         ? '<span class="surv-tag dead">疫情前</span> 属自主收缩'
         : (preN === 0
-          ? '<span class="surv-tag" style="background:#FFFFFF;color:#8A8A8A">疫情后</span> 叠加外部冲击'
-          : '<span class="surv-tag dead">疫情前 ' + preN + ' 家</span> <span class="surv-tag" style="background:#FFFFFF;color:#8A8A8A">疫情后 ' + postN + ' 家</span>');
+          ? '<span class="surv-tag" style="background:#FFF3D6;color:#8E5A00">疫情后</span> 叠加外部冲击'
+          : '<span class="surv-tag dead">疫情前 ' + preN + ' 家</span> <span class="surv-tag" style="background:#FFF3D6;color:#8E5A00">疫情后 ' + postN + ' 家</span>');
       return '<tr><td><b>' + k + '</b></td><td class="num">' + arr.length + '</td>' +
         '<td style="white-space:normal;max-width:560px">' + arr.map(function (x) { return x.short; }).join('、') + '</td>' +
         '<td>' + tag + '</td></tr>';
@@ -2318,7 +2187,7 @@ RENDERERS.timeline = function (V) {
         legend: legendOf(BRANDS, { top: 4 }),
         grid: { left: 6, right: 28, top: 34, bottom: 4, containLabel: true },
         xAxis: { type: 'value', min: -0.5, max: labels.length - 0.5, interval: 1,
-          axisLabel: { color: '#8A8A8A', fontSize: 11,
+          axisLabel: { color: '#9C8A76', fontSize: 11,
             formatter: function (v) {
               var i = v + 0.5;
               return (Math.abs(i - Math.round(i)) < 1e-6 && labels[Math.round(i)])
@@ -2328,7 +2197,7 @@ RENDERERS.timeline = function (V) {
         yAxis: { type: 'category', data: order.map(function (x) { return x.short; }),
           axisLabel: AXIS_LABEL, axisLine: AXIS_LINE, axisTick: { show: false } },
         series: BRANDS.map(function (b, bi) {
-          var col = BCOLOR[b] || '#8A8A8A';
+          var col = BCOLOR[b] || '#9C8A76';
           var data = [];
           for (var q = 0; q < order.length; q++) {
             if (order[q].brand === b) data.push([q, order[q].s.mi0, order[q].s.mi1]);
@@ -2346,9 +2215,9 @@ RENDERERS.timeline = function (V) {
         yAxis: yAxis('在营门店数'),
         series: [{
           type: 'line', data: aliveS, smooth: false, symbolSize: 6,
-          lineStyle: { width: 2.5, color: '#FF0033' }, itemStyle: { color: '#FF0033' },
-          areaStyle: { color: 'rgba(255,255,255,.055)' },
-          label: { show: true, color: '#8A8A8A', fontSize: 10, formatter: '{c}' },
+          lineStyle: { width: 2.5, color: '#C62828' }, itemStyle: { color: '#C62828' },
+          areaStyle: { color: 'rgba(78,121,167,.12)' },
+          label: { show: true, color: '#6D4C41', fontSize: 10, formatter: '{c}' },
           markLine: covidMark(labels)
         }]
       }));
@@ -2362,9 +2231,9 @@ RENDERERS.timeline = function (V) {
           type: 'bar', barMaxWidth: 34,
           data: closeKeys.map(function (k) {
             var arr = byM[k];
-            return { value: arr.length, itemStyle: { color: k < '2020-01' ? '#FF0033' : '#FFFFFF', borderRadius: 0 } };
+            return { value: arr.length, itemStyle: { color: k < '2020-01' ? '#C62828' : '#FBC02D', borderRadius: [3, 3, 0, 0] } };
           }),
-          label: { show: true, position: 'top', color: '#8A8A8A', fontSize: 11, formatter: '{c} 家' }
+          label: { show: true, position: 'top', color: '#6D4C41', fontSize: 11, formatter: '{c} 家' }
         }]
       }));
     }
@@ -2429,7 +2298,7 @@ RENDERERS.expansion = function (V) {
     ]) +
     '<div class="grid2">' +
       cardHTML('exFlow', '每月新开与关门', '柱：新开（正）· 停业（负）· 线：累计在营', 'tall', noteFlow) +
-      cardHTML('exLife', '门店命长排行', '红色＝已停业 · 白色＝存续', 'tall', noteLife) +
+      cardHTML('exLife', '门店命长排行', '红色＝已停业 · 绿色＝存续', 'tall', noteLife) +
     '</div>' +
     '<div class="mt14"><div class="card"><div class="card-h"><div class="t">关店性质判定</div>' +
     '<div class="s">对比停业前 30 天与更早 30 天的 GMV：下滑 &gt;20% 判为衰减而亡，上升 &gt;20% 判为增长中被终止</div></div>' +
@@ -2462,12 +2331,12 @@ RENDERERS.expansion = function (V) {
         series: [
           { name: '新开门店', type: 'bar', stack: 'f', barMaxWidth: 26,
             data: keys.map(function (k) { return op[k] ? op[k].length : 0; }),
-            itemStyle: { color: '#E8E8E8', borderRadius: 0 } },
+            itemStyle: { color: '#2E7D32', borderRadius: [2, 2, 0, 0] } },
           { name: '停业门店', type: 'bar', stack: 'f', barMaxWidth: 26,
             data: keys.map(function (k) { return cl[k] ? -cl[k].length : 0; }),
-            itemStyle: { color: '#FF0033', borderRadius: 0 } },
+            itemStyle: { color: '#C62828', borderRadius: [0, 0, 2, 2] } },
           { name: '累计在营', type: 'line', yAxisIndex: 1, data: cum, smooth: false, symbolSize: 5,
-            lineStyle: { width: 2, color: '#FF0033' }, itemStyle: { color: '#FF0033' } }
+            lineStyle: { width: 2, color: '#C62828' }, itemStyle: { color: '#C62828' } }
         ]
       }));
       var rank = sts.slice().sort(function (a, b) { return a.days - b.days; });
@@ -2488,9 +2357,9 @@ RENDERERS.expansion = function (V) {
         series: [{
           type: 'bar', barMaxWidth: 15,
           data: rank.map(function (x) {
-            return { value: x.days, itemStyle: { color: x.alive ? C_ALIVE : C_DEAD, borderRadius: 0 } };
+            return { value: x.days, itemStyle: { color: x.alive ? C_ALIVE : C_DEAD, borderRadius: [0, 3, 3, 0] } };
           }),
-          label: { show: true, position: 'right', color: '#8A8A8A', fontSize: 11,
+          label: { show: true, position: 'right', color: '#6D4C41', fontSize: 11,
             formatter: function (a) { return a.value + ' 天'; } }
         }]
       }));
@@ -2623,7 +2492,7 @@ RENDERERS.platform = function (V) {
         series: PLATFORMS.map(function (p, pi) {
           return { name: p, type: 'bar', stack: 'p', barMaxWidth: 26,
             data: ms.gmv[pi].slice(lo, hi + 1).map(function (v) { return Math.round(v); }),
-            itemStyle: { color: pi ? '#E8E8E8' : '#FF0033' } };
+            itemStyle: { color: pi ? '#EF6C00' : '#C62828' } };
         })
       }));
       mount('pfRate', Object.assign({
@@ -2642,24 +2511,24 @@ RENDERERS.platform = function (V) {
         series: [
           { name: '佣金率', type: 'bar', barMaxWidth: 30,
             data: ps.map(function (x) { return +x.m.commissionRate.toFixed(4); }),
-            itemStyle: { color: '#8A8A8A', borderRadius: 0 },
+            itemStyle: { color: '#6D4C41', borderRadius: [3, 3, 0, 0] },
             label: { show: true, position: 'top', formatter: function (a) { return (a.value * 100).toFixed(2) + '%'; },
-              color: '#8A8A8A', fontSize: 10.5 } },
+              color: '#6D4C41', fontSize: 10.5 } },
           { name: '实收率', type: 'bar', barMaxWidth: 30,
             data: ps.map(function (x) { return +x.m.incomeRate.toFixed(4); }),
-            itemStyle: { color: '#FF0033', borderRadius: 0 },
+            itemStyle: { color: '#C62828', borderRadius: [3, 3, 0, 0] },
             label: { show: true, position: 'top', formatter: function (a) { return (a.value * 100).toFixed(1) + '%'; },
-              color: '#8A8A8A', fontSize: 10.5 } },
+              color: '#6D4C41', fontSize: 10.5 } },
           { name: '补贴率', type: 'bar', barMaxWidth: 30,
             data: ps.map(function (x) { return +x.m.subRate.toFixed(4); }),
-            itemStyle: { color: '#FF0033', borderRadius: 0 },
+            itemStyle: { color: '#C62828', borderRadius: [3, 3, 0, 0] },
             label: { show: true, position: 'top', formatter: function (a) { return (a.value * 100).toFixed(1) + '%'; },
-              color: '#8A8A8A', fontSize: 10.5 } },
+              color: '#6D4C41', fontSize: 10.5 } },
           { name: '进店率', type: 'bar', barMaxWidth: 30,
             data: ps.map(function (x) { return +x.m.visitRate.toFixed(4); }),
-            itemStyle: { color: '#8A8A8A', borderRadius: 0 },
+            itemStyle: { color: '#8E5B2B', borderRadius: [3, 3, 0, 0] },
             label: { show: true, position: 'top', formatter: function (a) { return (a.value * 100).toFixed(2) + '%'; },
-              color: '#8A8A8A', fontSize: 10.5 } }
+              color: '#6D4C41', fontSize: 10.5 } }
         ]
       }));
     }
@@ -2753,7 +2622,7 @@ RENDERERS.stores = function (V) {
       // 四象限散点
       var pts = sts.map(function (x) {
         return { value: [x.days, +x.perDay.toFixed(0), Math.round(x.m.gmv), x.short], name: x.short,
-          itemStyle: { color: x.alive ? C_ALIVE : (x.m.gmv > 300000 ? '#FF0033' : '#3A3A3A') } };
+          itemStyle: { color: x.alive ? C_ALIVE : (x.m.gmv > 300000 ? '#C62828' : '#E8B0A8') } };
       });
       mount('stQuad', Object.assign({
         tooltip: Object.assign(tipItem(), {
@@ -2774,11 +2643,11 @@ RENDERERS.stores = function (V) {
           type: 'scatter', data: pts,
           symbolSize: function (d) { return Math.max(11, Math.min(34, Math.sqrt(d[2]) / 5.2)); },
           itemStyle: { opacity: .78, borderColor: '#fff', borderWidth: 1 },
-          label: { show: true, position: 'right', color: '#8A8A8A', fontSize: 10.5,
+          label: { show: true, position: 'right', color: '#6D4C41', fontSize: 10.5,
             formatter: function (a) { return a.value[3]; } },
           labelLayout: { hideOverlap: true },
-          markLine: { silent: true, symbol: 'none', lineStyle: { color: '#3A3A3A', type: 'dashed', width: 1 },
-            label: { color: '#8A8A8A', fontSize: 10 },
+          markLine: { silent: true, symbol: 'none', lineStyle: { color: '#C4B49A', type: 'dashed', width: 1 },
+            label: { color: '#9C8A76', fontSize: 10 },
             data: [{ xAxis: medDay, label: { formatter: '存活中位数 ' + Math.round(medDay) + '天' } },
                    { yAxis: Math.round(medPer), label: { formatter: '日均中位数 ¥' + fNum(medPer) } }] }
         }]
@@ -2808,10 +2677,10 @@ RENDERERS.stores = function (V) {
           type: 'bar', barMaxWidth: 30,
           data: bins.map(function (b) {
             return { value: b.n, itemStyle: {
-              color: b.lo < 90 ? '#FF0033' : (b.lo < 180 ? '#FFFFFF' : '#E8E8E8'),
-              borderRadius: 0 } };
+              color: b.lo < 90 ? '#C62828' : (b.lo < 180 ? '#FBC02D' : '#2E7D32'),
+              borderRadius: [3, 3, 0, 0] } };
           }),
-          label: { show: true, position: 'top', color: '#8A8A8A', fontSize: 11, formatter: '{c}' }
+          label: { show: true, position: 'top', color: '#6D4C41', fontSize: 11, formatter: '{c}' }
         }]
       }));
       // 行点击 → 单店剖析
@@ -2861,7 +2730,7 @@ RENDERERS.store = function (V) {
     per[p] = met(a);
   });
   var platRows = PLATFORMS.map(function (p) {
-    if (!per[p]) return '<tr><td>' + p + '</td><td colspan="6" style="color:#8A8A8A">该店未接入此平台</td></tr>';
+    if (!per[p]) return '<tr><td>' + p + '</td><td colspan="6" style="color:#9C8A76">该店未接入此平台</td></tr>';
     var q = per[p];
     return '<tr><td><b>' + p + '</b></td>' +
       '<td class="num">' + fMoneyRaw(q.gmv) + '</td>' +
@@ -2874,11 +2743,11 @@ RENDERERS.store = function (V) {
 
   // 关键节点
   var nodes = [
-    { d: s.first, c: '#FF0033', t: '开业', b: '首月 GMV ' + fMoneyRaw(ms[lo].gmv) + '，有效订单 ' + fNum(ms[lo].valid) + ' 单' },
-    { d: MONTHS[peakMi], c: '#E8E8E8', t: 'GMV 峰值月', b: 'GMV ' + fMoneyRaw(peakV) + '，客单价 ¥' + ms[peakMi].aov.toFixed(1) + '，实收率 ' + fPct(ms[peakMi].incomeRate) },
+    { d: s.first, c: '#C62828', t: '开业', b: '首月 GMV ' + fMoneyRaw(ms[lo].gmv) + '，有效订单 ' + fNum(ms[lo].valid) + ' 单' },
+    { d: MONTHS[peakMi], c: '#2E7D32', t: 'GMV 峰值月', b: 'GMV ' + fMoneyRaw(peakV) + '，客单价 ¥' + ms[peakMi].aov.toFixed(1) + '，实收率 ' + fPct(ms[peakMi].incomeRate) },
     { d: s.last, c: x.alive ? C_ALIVE : C_DEAD, t: x.alive ? '存续至数据截止' : '最后有数据', b: '末月 GMV ' + fMoneyRaw(ms[hi].gmv) + '，较峰值 ' + ((ms[hi].gmv - peakV) / peakV * 100).toFixed(0) + '%' }
   ];
-  if (ct) nodes.push({ d: '', c: '#E8E8E8', t: '关店性质：' + ct.verdict,
+  if (ct) nodes.push({ d: '', c: '#EF6C00', t: '关店性质：' + ct.verdict,
     b: '停业前 30 天 GMV ' + fMoneyRaw(ct.w1) + '，更早 30 天 ' + fMoneyRaw(ct.w2) +
        (ct.ch !== null ? '，变化 ' + (ct.ch > 0 ? '+' : '') + (ct.ch * 100).toFixed(0) + '%' : '') });
 
@@ -2983,10 +2852,10 @@ RENDERERS.store = function (V) {
         yAxis: [yAxis('GMV', function (v) { return (v / 10000).toFixed(1) + '万'; }), yAxis('有效订单')],
         series: [
           { name: '月度 GMV', type: 'bar', data: gS, barMaxWidth: 26,
-            itemStyle: { color: '#FF0033', borderRadius: 0 },
+            itemStyle: { color: '#C62828', borderRadius: [3, 3, 0, 0] },
             markLine: covidMark(labels) },
           { name: '有效订单', type: 'line', yAxisIndex: 1, data: oS, smooth: true, symbolSize: 5,
-            lineStyle: { width: 2, color: '#E8E8E8' }, itemStyle: { color: '#E8E8E8' } }
+            lineStyle: { width: 2, color: '#EF6C00' }, itemStyle: { color: '#EF6C00' } }
         ]
       }));
       mount('stRate', Object.assign({
@@ -3003,10 +2872,10 @@ RENDERERS.store = function (V) {
         yAxis: yAxisPct('比率'),
         series: [
           { name: '实收率', type: 'line', data: irS, smooth: true, symbolSize: 5,
-            lineStyle: { width: 2, color: '#FF0033' }, itemStyle: { color: '#FF0033' },
-            areaStyle: { color: 'rgba(255,255,255,.045)' } },
+            lineStyle: { width: 2, color: '#C62828' }, itemStyle: { color: '#C62828' },
+            areaStyle: { color: 'rgba(78,121,167,.08)' } },
           { name: '补贴率', type: 'line', data: srS, smooth: true, symbolSize: 5,
-            lineStyle: { width: 2, color: '#FF0033' }, itemStyle: { color: '#FF0033' } }
+            lineStyle: { width: 2, color: '#C62828' }, itemStyle: { color: '#C62828' } }
         ]
       }));
       mount('stFunnel', Object.assign({
@@ -3019,10 +2888,10 @@ RENDERERS.store = function (V) {
             formatter: function (a) { return a.name + '  ' + fNum(a.value); } },
           itemStyle: { borderWidth: 0 },
           data: [
-            { value: m.exp, name: '曝光', itemStyle: { color: '#4A4A4A' } },
-            { value: m.visit, name: '进店', itemStyle: { color: '#8A8A8A' } },
-            { value: m.order, name: '下单', itemStyle: { color: '#FF0033' } },
-            { value: m.valid, name: '有效订单', itemStyle: { color: '#FFFFFF' } }
+            { value: m.exp, name: '曝光', itemStyle: { color: '#FBD98A' } },
+            { value: m.visit, name: '进店', itemStyle: { color: '#F5B942' } },
+            { value: m.order, name: '下单', itemStyle: { color: '#C62828' } },
+            { value: m.valid, name: '有效订单', itemStyle: { color: '#8E1B1B' } }
           ]
         }]
       }));
@@ -3033,8 +2902,8 @@ RENDERERS.store = function (V) {
         xAxis: xAxisMonth(labels.map(dShort)),
         yAxis: yAxis('人均消费', function (v) { return '¥' + v; }),
         series: [{ name: '人均消费', type: 'line', data: aovS, smooth: true, symbolSize: 6,
-          lineStyle: { width: 2, color: '#8A8A8A' }, itemStyle: { color: '#8A8A8A' },
-          label: { show: true, color: '#8A8A8A', fontSize: 10, formatter: function (a) { return '¥' + a.value; } } }]
+          lineStyle: { width: 2, color: '#6D4C41' }, itemStyle: { color: '#6D4C41' },
+          label: { show: true, color: '#9C8A76', fontSize: 10, formatter: function (a) { return '¥' + a.value; } } }]
       }));
       var pick = document.getElementById('storePick');
       if (pick) pick.addEventListener('click', function (e) {
@@ -3432,29 +3301,29 @@ function buildChain(V, sts) {
   var preN = dead.filter(function (x) { return x.last < '2020-01-23'; }).length;
 
   return [
-    { color: '#FF0033', t: '第 1 环 · 用让利换规模，实收被压到 ' + fPct(m.incomeRate),
+    { color: '#C62828', t: '第 1 环 · 用让利换规模，实收被压到 ' + fPct(m.incomeRate),
       b: '补贴率 ' + fPct(m.subRate) + '，其中商家自己承担 ' + fPct(m.mSubShare) + '（占补贴总额绝大部分），' +
          '平台只出 ' + fPct(1 - m.mSubShare) + '。平台抽佣 ' + fPct(m.commissionRate, 2) + '。' +
          '结果是每卖出 ¥100 的货，商家只拿回 ¥' + (m.incomeRate * 100).toFixed(0) + '。',
       act: '「平台补贴」和「商家自贴」必须分开看。前者是资源，后者是失血。' },
-    { color: '#E8E8E8', t: '第 2 环 · 单店月均实收 ¥' + Math.round(medIncome).toLocaleString('zh-CN') + '，模型不成立',
+    { color: '#EF6C00', t: '第 2 环 · 单店月均实收 ¥' + Math.round(medIncome).toLocaleString('zh-CN') + '，模型不成立',
       b: '按上海 30–60㎡ 快餐店 ¥3~6 万/月的固定成本计算，多数门店连保本线都摸不到。' +
          '保本需要的日均 GMV 约 ¥' + fNum(40000 / (m.incomeRate || 1) / 30) + '，' +
          '而实际中位数只有 ' + fMoneyRaw(median(sts.map(function (x) { return x.perDay; }))) + '。',
       act: '开店前先算保本日均 GMV，算不出来的选址直接放弃。' },
-    { color: '#8A8A8A', t: '第 3 环 · 模型未验证就加速扩张：' + maxOpenK + ' 单月开 ' + maxOpen + ' 家',
+    { color: '#6D4C41', t: '第 3 环 · 模型未验证就加速扩张：' + maxOpenK + ' 单月开 ' + maxOpen + ' 家',
       b: '在单店模型还没跑通的情况下，把门店数在两个月内快速推高。' +
          '全周期共新开 ' + Object.keys(op).reduce(function (a, k) { return a + op[k].length; }, 0) + ' 家。',
       act: '复制的前提是「已跑通」，不是「感觉能跑通」。单店至少要连续 2 个月实收为正。' },
-    { color: '#FF0033', t: '第 4 环 · 现金流被多店同时爬坡耗尽，' + maxCloseK + ' 被迫关 ' + maxClose + ' 家',
+    { color: '#C62828', t: '第 4 环 · 现金流被多店同时爬坡耗尽，' + maxCloseK + ' 被迫关 ' + maxClose + ' 家',
       b: '关掉的 ' + dead.length + ' 家里有 ' + grow.length + ' 家在停业前 GMV 仍在上升（' +
          grow.slice(0, 3).map(function (z) { return z.x.short + ' +' + (z.t.ch * 100).toFixed(0) + '%'; }).join('、') +
          '）。店在涨却被关，说明问题出在总部现金，不在门店经营。',
       act: '扩张速度必须匹配现金储备。让好店给坏决策陪葬，是最贵的错误。' },
-    { color: '#FF0033', t: '第 5 环 · 规模骤降，丧失议价与抗风险能力',
+    { color: '#C62828', t: '第 5 环 · 规模骤降，丧失议价与抗风险能力',
       b: '门店数从峰值快速回落，采购议价、平台谈判、人员调度全面失去规模优势，雪上加霜。',
       act: '规模本身不是护城河，但规模消失会同时带走议价能力和缓冲空间。' },
-    { color: '#8A8A8A', t: '第 6 环 · 疫情成为最后一击',
+    { color: '#9C8A76', t: '第 6 环 · 疫情成为最后一击',
       b: (dec && feb && dec.gmv > 0 && feb.gmv > 0
         ? 'GMV 从 2019-12 峰值 ' + fMoneyRaw(dec.gmv) + ' 跌到 2020-02 的 ' + fMoneyRaw(feb.gmv) +
           '（' + fPct((feb.gmv - dec.gmv) / dec.gmv, 0) + '），曝光量同步腰斩。'
@@ -3606,7 +3475,7 @@ function chgOf(cur, prev, k) {
   if (!prev[k]) return null;
   return (cur[k] - prev[k]) / prev[k];
 }
-// 同环比单元格：白=改善、红=恶化（按经营好坏着色，不按涨跌）
+// 同环比单元格：绿=改善、红=恶化（按经营好坏着色，不按涨跌）
 function chgCell(chg, dir, dp) {
   if (chg === null || chg === undefined || isNaN(chg)) return '<span class="note">—</span>';
   var good = chg * dir;
@@ -3674,12 +3543,12 @@ RENDERERS.mom = function (V) {
     var j = judge(def, chg);
     var isR = def.u === 'pct' || def.u === 'pct2';
     return '<tr><td><b>' + def.n + '</b>' + (def.dir < 0 ? ' <span class="rx info">越低越好</span>' : '') + '</td>' +
-      '<td style="white-space:normal;color:#8A8A8A">' + def.why + '</td>' +
+      '<td style="white-space:normal;color:#6D4C41">' + def.why + '</td>' +
       '<td class="num"><b>' + fmtM(def.u, curS[def.k]) + '</b></td>' +
       '<td class="num">' + (prevS ? fmtM(def.u, prevS[def.k]) : '—') + '</td>' +
       '<td class="num">' + chgCell(chg, def.dir) + '</td>' +
       '<td class="num">' + chgCell(yoy, def.dir) + '</td>' +
-      '<td class="num" style="color:#8A8A8A">' + fmtM(def.u, avg3(def.k)) + '</td>' +
+      '<td class="num" style="color:#6D4C41">' + fmtM(def.u, avg3(def.k)) + '</td>' +
       '<td><span class="rx ' + j.lv + '">' + j.t + '</span></td></tr>';
   }).join('');
 
@@ -3792,7 +3661,7 @@ RENDERERS.mom = function (V) {
     level: (chgIr !== null && chgIr < -0.02) ? 'warn' : 'info',
     text: '本期 ' + METRICS.filter(function (d) { return judge(d, chgOf(curS, prevS, d.k)).t === '恶化'; }).length +
       ' 项恶化 / ' + METRICS.filter(function (d) { return judge(d, chgOf(curS, prevS, d.k)).t === '改善'; }).length +
-      ' 项改善；颜色按<b>经营好坏</b>着色（白=改善、红=恶化），不按数字涨跌。' };
+      ' 项改善；颜色按<b>经营好坏</b>着色（绿=改善、红=恶化），不按数字涨跌。' };
   var noteScan = {
     level: scanRows.indexOf('rx danger') >= 0 ? 'danger' : 'info',
     text: '以 <b>' + MONTHS[mL] + '</b> 统一口径横向对比各层级：同一月份里各家门店的恶化项数直接可比，' +
@@ -3803,7 +3672,7 @@ RENDERERS.mom = function (V) {
   }).join('');
   var scopeChips = scopeDefs(V).map(function (s) {
     return '<button class="chip' + (s.k === MOM.scope ? ' on' : '') + '" data-scope="' + s.k + '">' +
-      (s.brand ? '<span class="cd" style="background:' + (BCOLOR[s.brand] || '#8A8A8A') + '"></span>' : '') +
+      (s.brand ? '<span class="cd" style="background:' + (BCOLOR[s.brand] || '#9C8A76') + '"></span>' : '') +
       s.n + '<span class="sub">' + (s.sub || '') + '</span></button>';
   }).join('');
 
@@ -3826,8 +3695,8 @@ RENDERERS.mom = function (V) {
       '若后续补入 2018-10 起的流水，同比列会自动点亮。' +
     '</span></div>' +
     '<div class="legend">' +
-      '<span class="li"><span class="sw" style="background:#FFFFFF"></span>白色 = 经营改善</span>' +
-      '<span class="li"><span class="sw" style="background:#FF0033"></span>红色 = 经营恶化</span>' +
+      '<span class="li"><span class="sw" style="background:#2E7D32"></span>绿色 = 经营改善</span>' +
+      '<span class="li"><span class="sw" style="background:#C62828"></span>红色 = 经营恶化</span>' +
       '<span class="li">颜色按「经营好坏」而非数字涨跌着色</span>' +
       '<span class="li">变化 &lt;2% 视为持平</span>' +
     '</div>' +
@@ -3901,20 +3770,20 @@ function momInit(V, sc, grain, live, serie) {
     ],
     series: [
       { name: def.n, type: 'bar', barMaxWidth: 22, data: vals,
-        itemStyle: { color: '#FF0033', borderRadius: 0 } },
+        itemStyle: { color: '#C62828', borderRadius: [3, 3, 0, 0] } },
       { name: '环比 %', type: 'line', yAxisIndex: 1, data: chgs, symbolSize: 5,
-        lineStyle: { color: '#E8E8E8', width: 1.6 }, itemStyle: { color: '#E8E8E8' },
+        lineStyle: { color: '#EF6C00', width: 1.6 }, itemStyle: { color: '#EF6C00' },
         markLine: { silent: true, symbol: 'none',
-          data: [{ yAxis: 0, lineStyle: { color: '#FF0033', type: 'dashed', width: 1 } }],
+          data: [{ yAxis: 0, lineStyle: { color: '#C62828', type: 'dashed', width: 1 } }],
           label: { show: false } } }
     ]
   });
 
   var FKEYS = [
-    { k: 'visitRate', n: '进店率', c: '#FF0033' },
-    { k: 'orderRate', n: '下单率', c: '#E8E8E8' },
-    { k: 'validRate', n: '有效订单率', c: '#E8E8E8' },
-    { k: 'paidShare', n: '付费流量占比', c: '#8A8A8A' }
+    { k: 'visitRate', n: '进店率', c: '#C62828' },
+    { k: 'orderRate', n: '下单率', c: '#EF6C00' },
+    { k: 'validRate', n: '有效订单率', c: '#2E7D32' },
+    { k: 'paidShare', n: '付费流量占比', c: '#6D4C41' }
   ];
   mount('momFunnel', {
     tooltip: Object.assign(tipItem(), {
@@ -4011,10 +3880,10 @@ RENDERERS.playbook = function (V) {
 
   /* ---- 每 ¥100 去向 ---- */
   var parts = [
-    { n: '商家实收', v: m.incomeRate, c: '#FF0033' },
-    { n: '商家自补贴', v: m.mSubRate, c: '#FF0033' },
-    { n: '平台补贴', v: m.pSubRate, c: '#E8E8E8' },
-    { n: '平台佣金', v: m.commissionRate, c: '#8A8A8A' }
+    { n: '商家实收', v: m.incomeRate, c: '#C62828' },
+    { n: '商家自补贴', v: m.mSubRate, c: '#C62828' },
+    { n: '平台补贴', v: m.pSubRate, c: '#EF6C00' },
+    { n: '平台佣金', v: m.commissionRate, c: '#6D4C41' }
   ];
   var noteSplit = { level: 'danger',
     text: '线上每 <b>¥100 流水</b>：商家实收 <b>¥' + (m.incomeRate * 100).toFixed(1) + '</b>、自己掏的补贴 <b>¥' +
@@ -4276,9 +4145,9 @@ RENDERERS.playbook = function (V) {
       });
 
       var VS = [
-        { n: '商家净得', c: '#FF0033', v: [m.incomeRate * 100, 100] },
-        { n: '平台佣金', c: '#8A8A8A', v: [m.commissionRate * 100, 0] },
-        { n: '让利（自补贴+平台补贴）', c: '#FF0033', v: [m.subRate * 100, 0] }
+        { n: '商家净得', c: '#C62828', v: [m.incomeRate * 100, 100] },
+        { n: '平台佣金', c: '#6D4C41', v: [m.commissionRate * 100, 0] },
+        { n: '让利（自补贴+平台补贴）', c: '#C62828', v: [m.subRate * 100, 0] }
       ];
       mount('pbVs', {
         tooltip: Object.assign(tipItem(), {
@@ -4293,7 +4162,7 @@ RENDERERS.playbook = function (V) {
         xAxis: { type: 'category', data: ['线上（实测）', '线下（结构测算）'],
           axisLabel: AXIS_LABEL, axisLine: AXIS_LINE, axisTick: { show: false } },
         yAxis: { type: 'value', max: 100, name: '元 / 每 ¥100 流水',
-          nameTextStyle: { color: '#8A8A8A', fontSize: 11 }, axisLabel: AXIS_LABEL,
+          nameTextStyle: { color: '#9C8A76', fontSize: 11 }, axisLabel: AXIS_LABEL,
           axisLine: { show: false }, axisTick: { show: false }, splitLine: SPLIT_LINE },
         series: VS.map(function (x) {
           return { name: x.n, type: 'bar', stack: 'v', barMaxWidth: 60,
@@ -4312,7 +4181,7 @@ RENDERERS.playbook = function (V) {
               s += it.marker + it.seriesName + '：¥' + Math.round(it.value).toLocaleString('zh-CN') + '<br/>';
             });
             var x = brk.filter(function (y) { return y.short === a[0].axisValue; })[0];
-            if (x) s += '<span style="color:#8A8A8A">存活 ' + x.days + ' 天 · 实收率 ' + fPct(x.m.incomeRate) +
+            if (x) s += '<span style="color:#9C8A76">存活 ' + x.days + ' 天 · 实收率 ' + fPct(x.m.incomeRate) +
               ' · 月均 GMV ¥' + Math.round(x.perMonthGmv).toLocaleString('zh-CN') + '</span>';
             return s;
           }
@@ -4325,15 +4194,15 @@ RENDERERS.playbook = function (V) {
         series: [{
           name: '月均到手（商家实收）', type: 'bar', barMaxWidth: 34,
           data: brk.map(function (x) { return Math.round(x.perMonthIncome); }),
-          itemStyle: { borderRadius: 0,
-            color: function (pp) { return brk[pp.dataIndex].perMonthIncome < PB_ASSUM.low ? '#FF0033' : '#FF0033'; } },
-          label: { show: true, position: 'top', color: '#8A8A8A', fontSize: 10,
+          itemStyle: { borderRadius: [3, 3, 0, 0],
+            color: function (pp) { return brk[pp.dataIndex].perMonthIncome < PB_ASSUM.low ? '#C62828' : '#C62828'; } },
+          label: { show: true, position: 'top', color: '#6D4C41', fontSize: 10,
             formatter: function (a) { return (a.value / 10000).toFixed(1) + '万'; } },
           markLine: { silent: true, symbol: 'none', data: [
-            { yAxis: PB_ASSUM.low, lineStyle: { color: '#E8E8E8', type: 'dashed', width: 1.2 },
-              label: { formatter: '保本下限 ¥3 万', position: 'insideStartTop', color: '#E8E8E8', fontSize: 10 } },
-            { yAxis: PB_ASSUM.high, lineStyle: { color: '#E8E8E8', type: 'dashed', width: 1.2 },
-              label: { formatter: '保本上限 ¥6 万', position: 'insideStartTop', color: '#E8E8E8', fontSize: 10 } }
+            { yAxis: PB_ASSUM.low, lineStyle: { color: '#EF6C00', type: 'dashed', width: 1.2 },
+              label: { formatter: '保本下限 ¥3 万', position: 'insideStartTop', color: '#EF6C00', fontSize: 10 } },
+            { yAxis: PB_ASSUM.high, lineStyle: { color: '#EF6C00', type: 'dashed', width: 1.2 },
+              label: { formatter: '保本上限 ¥6 万', position: 'insideStartTop', color: '#EF6C00', fontSize: 10 } }
           ] }
         }]
       });
@@ -4370,7 +4239,7 @@ var TRACK_ITEMS = [
   { k: 'x_repur',    n: '30 天复购率',          u: 'gap',   tgt: null,  dir: 1,
     act: '会员日、复购券、企业订餐续约',           freq: '每月', fc: 'm', src: '未采集' }
 ];
-var TK_COLOR = { ok: '#E8E8E8', near: '#E8E8E8', bad: '#FF0033', gap: '#8A8A8A', na: '#8A8A8A' };
+var TK_COLOR = { ok: '#2E7D32', near: '#EF6C00', bad: '#C62828', gap: '#9C8A76', na: '#9C8A76' };
 var TK_NAME = { ok: '达标', near: '接近', bad: '未达标', gap: '待埋点', na: '无数据' };
 /* 金额小于 ¥100 时保留两位小数，否则 ¥1.4 与 ¥1.2 会被取整成同一个「¥1」 */
 function tkFmt(u, v) {
@@ -4461,7 +4330,7 @@ RENDERERS.track = function (V) {
     var achTxt = x.ach == null ? '<span class="note">—</span>'
       : '<span class="mono" style="font-weight:600;color:' + c + '">' + fPct(x.ach, 0) + '</span>' +
         '<span class="pbar"><i style="width:' + Math.min(100, x.ach * 100).toFixed(0) + '%;background:' + c + '"></i></span>';
-    var pill = '<span style="display:inline-block;font-size:10px;font-weight:600;padding:1px 7px;border-radius:0;'
+    var pill = '<span style="display:inline-block;font-size:10px;font-weight:600;padding:1px 7px;border-radius:4px;'
       + 'background:' + c + '1A;color:' + c + '">' + TK_NAME[x.st] + '</span>';
     return '<tr><td><b>' + t.n + '</b></td><td style="white-space:normal;min-width:210px">' + t.act +
       '</td><td class="num">' + baseTxt + '</td><td class="num">' + tgtTxt + '</td><td class="num">' + achTxt +
@@ -4517,7 +4386,7 @@ RENDERERS.track = function (V) {
             var x = M.byAch[M.byAch.length - 1 - a[0].dataIndex];
             return '<b>' + x.t.n + '</b><br/>现状：' + tkFmt(x.t.u, x.base) +
               '<br/>目标：' + tkFmt(x.t.u, x.t.tgt) + '<br/>达成度：' + fPct(x.ach, 0) +
-              '<br/><span style="color:#8A8A8A">' + x.t.act + '</span>';
+              '<br/><span style="color:#9C8A76">' + x.t.act + '</span>';
           }
         }),
         grid: { left: 6, right: 62, top: 16, bottom: 6, containLabel: true },
@@ -4530,12 +4399,12 @@ RENDERERS.track = function (V) {
         series: [{
           type: 'bar', barWidth: 13,
           data: asc.map(function (x) { return +x.ach.toFixed(3); }),
-          itemStyle: { color: function (p) { return TK_COLOR[asc[p.dataIndex].st]; }, borderRadius: 0 },
-          label: { show: true, position: 'right', fontSize: 11, color: '#8A8A8A',
+          itemStyle: { color: function (p) { return TK_COLOR[asc[p.dataIndex].st]; }, borderRadius: [0, 3, 3, 0] },
+          label: { show: true, position: 'right', fontSize: 11, color: '#6D4C41',
             formatter: function (p) { return fPct(p.value, 0); } },
           markLine: { silent: true, symbol: 'none',
-            lineStyle: { color: '#8A8A8A', type: 'dashed', width: 1 },
-            label: { formatter: '目标 100%', position: 'end', fontSize: 10, color: '#8A8A8A' },
+            lineStyle: { color: '#9C8A76', type: 'dashed', width: 1 },
+            label: { formatter: '目标 100%', position: 'end', fontSize: 10, color: '#9C8A76' },
             data: [{ xAxis: 1 }] }
         }]
       });
@@ -4574,9 +4443,9 @@ RENDERERS.track = function (V) {
         xAxis: xAxisMonth(keys),
         yAxis: yAxis('%', function (v) { return v.toFixed(0) + '%'; }),
         series: [
-          withTgt('进店率', rVis, '#8A8A8A', 9.0, '9%'),
-          withTgt('下单率', rOrd, '#E8E8E8', 25.0, '25%'),
-          withTgt('实收率', rInc, '#FF0033', 45.0, '45%')
+          withTgt('进店率', rVis, '#8E5B2B', 9.0, '9%'),
+          withTgt('下单率', rOrd, '#EF6C00', 25.0, '25%'),
+          withTgt('实收率', rInc, '#C62828', 45.0, '45%')
         ]
       });
     }
@@ -4621,11 +4490,11 @@ function updateStamp() {
 }
 function renderBrand() {
   var h = '<button class="brand-btn' + (STATE.brand === 'ALL' ? ' on' : '') + '" data-brand="ALL">' +
-    '<span class="dot" style="background:#8A8A8A"></span>全部品牌<span class="cnt">' + STORES.length + ' 家</span></button>';
+    '<span class="dot" style="background:#9C8A76"></span>全部品牌<span class="cnt">' + STORES.length + ' 家</span></button>';
   BRANDS.forEach(function (b) {
     var sts = STORES.filter(function (s) { return s.brand === b; });
     h += '<button class="brand-btn' + (STATE.brand === b ? ' on' : '') + '" data-brand="' + b + '">' +
-      '<span class="dot" style="background:' + (BCOLOR[b] || '#8A8A8A') + '"></span>' + b +
+      '<span class="dot" style="background:' + (BCOLOR[b] || '#9C8A76') + '"></span>' + b +
       '<span class="cnt">' + sts.length + ' 家</span></button>';
   });
   document.getElementById('brandList').innerHTML = h;
